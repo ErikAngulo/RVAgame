@@ -1,13 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
     public float time = 0.1f;
+    public TextMeshProUGUI correctText;
+    public TextMeshProUGUI incorrectText;
     private bool _pushable = true;
-    public void Pushed(GameObject go)
+    private int _correct = 0;
+    private int _incorrect = 0;
+
+    public void Pushed(GameObject go, GameObject ball)
     {
+        if(ball != null){
+            if(ball.GetComponent<Renderer>().material.color==go.GetComponent<Renderer>().material.color){
+                Debug.Log("Correct!");
+                _correct += 1;
+                correctText.text = "Correct: " + _correct;
+            }else{
+                Debug.Log("Incorrect!");
+                _incorrect += 1;
+                incorrectText.text = "Incorrect: " + _incorrect;
+            }
+        }else{
+            Debug.Log("Use the balls!");
+        }
         if(_pushable){
             StartCoroutine(Push(time,go));
         }

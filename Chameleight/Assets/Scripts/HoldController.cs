@@ -6,7 +6,7 @@ public class HoldController : MonoBehaviour
 {
     public Camera cam;
     public Transform guide;
-    public float ballSpeed = 5.0f;
+    public float ballSpeed = 10.0f;
 
     private GameObject _ball;
     private bool _holdable = true;

@@ -35,9 +35,9 @@ public class CameraController : MonoBehaviour
          // if raycast hits, it checks if it hit an object with the tag Player
         if(Physics.Raycast(transform.position, transform.forward, out hit, maxDistance) && tags.IndexOf(hit.collider.tag) != -1)
         {
-            Object.GetComponent<UnityEngine.UI.Image>().color= Color.blue;
+            Object.GetComponent<UnityEngine.UI.Image>().color= Color.green;
             if(Input.GetMouseButtonDown(0) && hit.collider.tag == "Button"){
-                buttonController.Pushed(hit.collider.gameObject);
+                buttonController.Pushed(hit.collider.gameObject,null);
                 _waiting = false;
                 StartCoroutine(Interact(waitTime));
             }else if(Input.GetMouseButtonDown(0) && hit.collider.tag == "Ball"){
