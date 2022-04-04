@@ -34,6 +34,7 @@ public class HoldController : MonoBehaviour
     
             //Set gravity to false while holding it
             _ball.GetComponent<Rigidbody>().useGravity = false;
+            _ball.GetComponent<Collider>().enabled = false;
     
             //we apply the same rotation our main object (Camera) has.
             _ball.transform.localRotation = transform.rotation;
@@ -45,6 +46,7 @@ public class HoldController : MonoBehaviour
 
      private void Throw(){
         _ball.GetComponent<Rigidbody>().useGravity = true;
+        _ball.GetComponent<Collider>().enabled = true;
         _ball.transform.position = cam.transform.position;
         _ball.GetComponent<Rigidbody>().velocity = ballSpeed*cam.transform.forward;
         guide.GetChild(0).parent = null;
