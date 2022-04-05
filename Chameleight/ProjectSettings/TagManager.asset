@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Floor
   - Button
+  - Ball
+  - Ball_throw
   layers:
   - Default
   - TransparentFX

@@ -8,39 +8,36 @@ public class ButtonController : MonoBehaviour
     public float time = 0.1f;
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
-    public TextMeshProUGUI timeText;
+    public TextMeshProUGUI missedText;
+    public TimeController timeController;
     private bool _pushable = true;
     private int _correct = 0;
     private int _incorrect = 0;
-    private float _time = 0.0f;
+    private int _missed = 0;
 
-    public void Start(){
-        _time = Time.time;
-    }
-
-    public void Update(){
-        float act_time = Time.time-_time;
-        timeText.text = "Time: " + act_time.ToString("0.0") + "s";
+    public void Missed(){
+        _missed += 1;
+        missedText.text = "Missed: " + _missed;
     }
 
     public void Pushed(GameObject go, GameObject ball)
     {
-        if(ball != null){
-            if(ball.GetComponent<Renderer>().material.color==go.GetComponent<Renderer>().material.color){
-                Debug.Log("Correct!");
-                _correct += 1;
-                correctText.text = "Correct: " + _correct;
-                _time = Time.time;
-                timeText.text = "Time: 0.0s";
-            }else{
-                Debug.Log("Incorrect!");
-                _incorrect += 1;
-                incorrectText.text = "Incorrect: " + _incorrect;
-            }
-        }else{
-            Debug.Log("Use the balls!");
-        }
+
         if(_pushable){
+            if(ball != null){
+                if(ball.GetComponent<Renderer>().material.color==go.GetComponent<Renderer>().material.color){
+                    Debug.Log("Correct!");
+                    _correct += 1;
+                    correctText.text = "Correct: " + _correct;
+                    timeController.UpdateTime();
+                }else{
+                    Debug.Log("Incorrect!");
+                    _incorrect += 1;
+                    incorrectText.text = "Incorrect: " + _incorrect;
+                }
+            }else{
+                Debug.Log("Use the balls!");
+            }
             StartCoroutine(Push(time,go));
         }
     }
