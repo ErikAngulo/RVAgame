@@ -8,9 +8,20 @@ public class ButtonController : MonoBehaviour
     public float time = 0.1f;
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
+    public TextMeshProUGUI timeText;
     private bool _pushable = true;
     private int _correct = 0;
     private int _incorrect = 0;
+    private float _time = 0.0f;
+
+    public void Start(){
+        _time = Time.time;
+    }
+
+    public void Update(){
+        float act_time = Time.time-_time;
+        timeText.text = "Time: " + act_time.ToString("0.0") + "s";
+    }
 
     public void Pushed(GameObject go, GameObject ball)
     {
@@ -19,6 +30,8 @@ public class ButtonController : MonoBehaviour
                 Debug.Log("Correct!");
                 _correct += 1;
                 correctText.text = "Correct: " + _correct;
+                _time = Time.time;
+                timeText.text = "Time: 0.0s";
             }else{
                 Debug.Log("Incorrect!");
                 _incorrect += 1;
