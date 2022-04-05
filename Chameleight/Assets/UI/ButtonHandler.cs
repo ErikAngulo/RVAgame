@@ -17,11 +17,13 @@ public class ButtonHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        if (Input.GetKeyDown(KeyCode.Q)){
             if (SceneManager.GetActiveScene().name.Equals(_escena_principal)){
                 Application.Quit();
             }
             else{
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
                 SceneManager.LoadScene(_escena_principal);
             }
         }
@@ -29,6 +31,8 @@ public class ButtonHandler : MonoBehaviour
 
     public void ChangeScene (string scene)
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(scene);
     }
 
