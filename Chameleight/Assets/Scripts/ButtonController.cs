@@ -9,7 +9,7 @@ public class ButtonController : MonoBehaviour
     public TextMeshProUGUI correctText;
     public TextMeshProUGUI incorrectText;
     public TextMeshProUGUI missedText;
-    public TimeController timeController;
+    public HoldController holdController;
     private bool _pushable = true;
     private int _correct = 0;
     private int _incorrect = 0;
@@ -18,6 +18,7 @@ public class ButtonController : MonoBehaviour
     public void Missed(){
         _missed += 1;
         missedText.text = "Missed: " + _missed;
+        holdController.Limit();
     }
 
     public void Pushed(GameObject go, GameObject ball)
@@ -29,12 +30,12 @@ public class ButtonController : MonoBehaviour
                     Debug.Log("Correct!");
                     _correct += 1;
                     correctText.text = "Correct: " + _correct;
-                    timeController.UpdateTime();
                 }else{
                     Debug.Log("Incorrect!");
                     _incorrect += 1;
                     incorrectText.text = "Incorrect: " + _incorrect;
                 }
+                holdController.Limit();
             }else{
                 Debug.Log("Use the balls!");
             }

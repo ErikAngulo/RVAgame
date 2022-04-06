@@ -1,29 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class HoldController : MonoBehaviour
 {
     public Camera cam;
     public TimeController timeController;
     public ButtonController buttonController;
+    public CameraController cameraController;
     public Transform guide;
     public float ballSpeed = 20.0f;
     public float destroyTime = 1.0f;
+    public int totalLimit = 10;
+    public TextMeshProUGUI ballsText;
 
+    private int _limit = 0;
     private GameObject _ball;
     private bool _holdable = true;
-    private bool _first = true;
     private Vector3 _position;
     private Quaternion _rotation;
     private Vector3 _localScale;
+
+    void Start(){
+        if(totalLimit>0){
+            _limit = totalLimit;
+            ballsText.text = "Balls: " + _limit;
+        }else{
+            ballsText.enabled = false;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
         if(!_holdable && Input.GetMouseButtonDown(1)){
             Throw();
-        }else if(!_holdable){
+        }else if(!_holdable && (totalLimit <= 0 || _limit > 0)){
             _ball.transform.position = guide.position;
         }
     }
@@ -33,9 +46,16 @@ public class HoldController : MonoBehaviour
             Pickup(go);
         }
     }
+
+    public void Limit(){
+        if(totalLimit > 0 &&_limit<=0){
+            timeController.ResultsTime();
+            cameraController.EndGame();
+        }
+    }
+
     private void Pickup(GameObject go)
      {
-
             _ball = go;
             //We set the object parent to our guide empty object.
             _ball.transform.SetParent(guide);
@@ -51,11 +71,8 @@ public class HoldController : MonoBehaviour
             _ball.transform.position = guide.position;
     
             _holdable = false;
-            
-            if(_first){
-                _first = false;
-                timeController.InitTime();
-            }
+
+            timeController.UpdateTime();
      }
 
      private void Copy(Transform t){
@@ -78,7 +95,16 @@ public class HoldController : MonoBehaviour
         _ball.GetComponent<Rigidbody>().velocity = ballSpeed*cam.transform.forward;
         _ball.tag = "Ball_throw";
         guide.GetChild(0).parent = null;
-        _holdable = true;
+        timeController.UpdateTime();
+        if(totalLimit>0){
+            _limit -=1;
+            ballsText.text = "Balls: " + _limit;
+            if(_limit>0){
+                _holdable = true;
+            }
+        }else{
+            _holdable = true;
+        }
         StartCoroutine(DestroyTime(destroyTime,_ball));
      }
 
