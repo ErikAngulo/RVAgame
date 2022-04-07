@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
@@ -34,6 +35,14 @@ public class ButtonHandler : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         SceneManager.LoadScene(scene);
+    }
+
+    public void SelectedGameScene (string name){
+        StaticClass.SelectedGameScene = name;
+    }
+
+    public void GoToSelectedGameScene(){
+        ChangeScene(StaticClass.SelectedGameScene);
     }
 
     public void ExitGame(){
