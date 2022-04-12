@@ -1,41 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class ButtonController : MonoBehaviour
 {
     public float time = 0.1f;
-    public TextMeshProUGUI correctText;
-    public TextMeshProUGUI incorrectText;
-    public TextMeshProUGUI missedText;
-    public HoldController holdController;
+    public ScoreController scoreController;
     private bool _pushable = true;
-    private int _correct = 0;
-    private int _incorrect = 0;
-    private int _missed = 0;
 
-    public void Missed(){
-        _missed += 1;
-        missedText.text = "Missed: " + _missed;
-        holdController.Limit();
-    }
-
-    public void Pushed(GameObject go, GameObject ball)
+    public void Pushed(GameObject go, GameObject ball, int ballNumber)
     {
 
         if(_pushable){
             if(ball != null){
                 if(ball.GetComponent<Renderer>().material.color==go.GetComponent<Renderer>().material.color){
                     Debug.Log("Correct!");
-                    _correct += 1;
-                    correctText.text = "Correct: " + _correct;
+                    scoreController.Correct(ballNumber);
                 }else{
                     Debug.Log("Incorrect!");
-                    _incorrect += 1;
-                    incorrectText.text = "Incorrect: " + _incorrect;
+                    scoreController.Incorrect(ballNumber);
                 }
-                holdController.Limit();
             }else{
                 Debug.Log("Use the balls!");
             }

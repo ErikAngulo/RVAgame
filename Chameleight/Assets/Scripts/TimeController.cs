@@ -10,6 +10,7 @@ public class TimeController : MonoBehaviour
     public TextMeshProUGUI generalTimeText;
     public TextMeshProUGUI resultsText;
     public CameraController cameraController;
+    public HoldController holdController;
     public float totalTime = 0.0f;
     private float _generalTime = 0.0f;
     private float _timeReaction = 0.0f;
@@ -17,9 +18,11 @@ public class TimeController : MonoBehaviour
     private bool _timeable = false;
     private bool _timeableReaction = false;
     private bool _timeableDecision = false;
+    private int phase = 0;
 
-    private List<float> _timesReactionList = new List<float>();
-    private List<float> _timesDecisionList = new List<float>();
+    private List<(int,float)> _timesReactionList = new List<(int,float)>();
+    private List<(int,float)> _timesDecisionList = new List<(int,float)>();
+    private List<(int,float)> _timesThrowList = new List<(int,float)>();
 
     public void Start(){
         generalTimeText.text = "Time: " + totalTime.ToString("0.0") + "s";
@@ -49,6 +52,7 @@ public class TimeController : MonoBehaviour
             if(totalTime>0.0f && act_time<=0.0f){
                 ResultsTime();
                 cameraController.EndGame();
+                holdController.EndGame();
             }
         }
     }
@@ -58,41 +62,55 @@ public class TimeController : MonoBehaviour
         _timeableReaction = false;
         _timeableDecision = false;
         float totalReaction = 0.0f;
-        foreach(float d in _timesReactionList)
+        foreach(var d in _timesReactionList)
         {    
-            totalReaction += d;
+            totalReaction += d.Item2;
         }
         if(_timesReactionList.Count>0){
             totalReaction /= _timesReactionList.Count;
         }
         string text = "Reaction: " + totalReaction.ToString("0.0") + "s";
         float totalDecision = 0.0f;
-        foreach(float d in _timesDecisionList)
+        foreach(var d in _timesDecisionList)
         {    
-            totalDecision += d;
+            totalDecision += d.Item2;
         }
         if(_timesDecisionList.Count>0){
             totalDecision /= _timesDecisionList.Count;
         }
         text += " Decision: " + totalDecision.ToString("0.0") + "s";
+        float totalThrow = 0.0f;
+        foreach(var d in _timesThrowList)
+        {    
+            totalThrow += d.Item2;
+        }
+        if(_timesThrowList.Count>0){
+            totalThrow /= _timesThrowList.Count;
+        }
+        text += " Throw: " + totalThrow.ToString("0.0") + "s";
         resultsText.text = text;
     }
 
     public void UpdateTime(){
         if(_timeableReaction){
-            _timesReactionList.Add(Time.time-_timeReaction);
+            _timesReactionList.Add((phase,Time.time-_timeReaction));
             _timeableReaction = false;
             _timeReaction = 0.0f;
             reactionTimeText.text = "Reaction: 0.0s";
             _timeableDecision = true;
             _timeDecision = Time.time;
         }else if(_timeableDecision){
-            _timesDecisionList.Add(Time.time-_timeDecision);
+            _timesDecisionList.Add((phase,Time.time-_timeDecision));
             _timeableDecision = false;
             _timeDecision = 0.0f;
             decisionTimeText.text = "Decision: 0.0s";
             _timeableReaction = true;
             _timeReaction= Time.time;
+            phase += 1;
         }
+    }
+
+    public void AddThrowTime(float _timeThrow, int ballNumber){
+        _timesThrowList.Add((ballNumber,Time.time-_timeThrow));
     }
 }

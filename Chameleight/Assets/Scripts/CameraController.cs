@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
             {
                 Object.GetComponent<UnityEngine.UI.Image>().color= Color.green;
                 if(Input.GetMouseButtonDown(0) && hit.collider.tag == "Button"){
-                    buttonController.Pushed(hit.collider.gameObject,null);
+                    buttonController.Pushed(hit.collider.gameObject,null,-1);
                     _waiting = false;
                     StartCoroutine(Interact(waitTime));
                 }else if(Input.GetMouseButtonDown(0) && hit.collider.tag == "Ball"){
