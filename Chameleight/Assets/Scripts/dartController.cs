@@ -11,7 +11,7 @@ public class dartController : MonoBehaviour
     void Update(){
         _lifeTime -= Time.deltaTime;
         if (_temporal && _lifeTime <= 0){
-            Destroy(gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
     }
     void OnCollisionEnter(Collision obj){
