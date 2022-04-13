@@ -8,6 +8,8 @@ public class HoldController : MonoBehaviour
     public Camera cam;
     public TimeController timeController;
     public CameraController cameraController;
+    public ThrowStatisticController throwStatisticController;
+    public IOController ioController;
     public Transform guide;
     public float ballSpeed = 20.0f;
     public float destroyTime = 1.0f;
@@ -58,6 +60,7 @@ public class HoldController : MonoBehaviour
         if(totalLimit > 0 &&_limit<=0){
             timeController.ResultsTime();
             cameraController.EndGame();
+            ioController.Write();
         }
     }
 
@@ -104,9 +107,12 @@ public class HoldController : MonoBehaviour
         _ball.GetComponent<Collider>().enabled = true;
         _ball.transform.position = cam.transform.position;
         _ball.GetComponent<Rigidbody>().velocity = ballSpeed*cam.transform.forward;
+        Debug.Log(cam.transform.forward.ToString());
         _ball.tag = "Ball_throw";
         guide.GetChild(0).parent = null;
         timeController.UpdateTime();
+        throwStatisticController.AddSpeed(ballSpeed,_number);
+        throwStatisticController.AddAngle(cam.transform.forward,_number);
         if(totalLimit>0){
             _limit -=1;
             ballsText.text = "Balls: " + _limit;

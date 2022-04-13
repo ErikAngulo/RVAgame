@@ -11,6 +11,7 @@ public class TimeController : MonoBehaviour
     public TextMeshProUGUI resultsText;
     public CameraController cameraController;
     public HoldController holdController;
+    public IOController ioController;
     public float totalTime = 0.0f;
     private float _generalTime = 0.0f;
     private float _timeReaction = 0.0f;
@@ -53,6 +54,7 @@ public class TimeController : MonoBehaviour
                 ResultsTime();
                 cameraController.EndGame();
                 holdController.EndGame();
+                ioController.Write();
             }
         }
     }
@@ -112,5 +114,17 @@ public class TimeController : MonoBehaviour
 
     public void AddThrowTime(float _timeThrow, int ballNumber){
         _timesThrowList.Add((ballNumber,Time.time-_timeThrow));
+    }
+
+    public List<(int,float)> GetReaction(){
+        return _timesReactionList;
+    }
+
+    public List<(int,float)> GetDecision(){
+        return _timesDecisionList;
+    }
+
+    public List<(int,float)> GetThrow(){
+        return _timesThrowList;
     }
 }

@@ -951,6 +951,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &382043702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 382043704}
+  - component: {fileID: 382043703}
+  m_Layer: 0
+  m_Name: ThrowController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &382043703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382043702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91ae5e041f87de25aad7c983710eef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &382043704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382043702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1520579, y: 1.7688212, z: -7.3540554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &507918978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1170,6 +1213,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -590.426, y: -483.74298, z: -420.70502}
+--- !u!1 &803768942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803768944}
+  - component: {fileID: 803768943}
+  m_Layer: 0
+  m_Name: IOController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &803768943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803768942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c994ed07fbad4224958ac18aa22ca24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeController: {fileID: 1909136815}
+  scoreController: {fileID: 353303873}
+  throwStatisticController: {fileID: 382043703}
+--- !u!4 &803768944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803768942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1520579, y: 1.7688212, z: -7.3540554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1000359103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1576,10 +1665,12 @@ MonoBehaviour:
   cam: {fileID: 237226019}
   timeController: {fileID: 1909136815}
   cameraController: {fileID: 237226021}
+  throwStatisticController: {fileID: 382043703}
+  ioController: {fileID: 803768943}
   guide: {fileID: 1797790910}
-  ballSpeed: 10
+  ballSpeed: 8
   destroyTime: 1
-  totalLimit: 50
+  totalLimit: 5
   ballsText: {fileID: 2106801717}
 --- !u!4 &1263552774
 Transform:
@@ -2523,6 +2614,7 @@ MonoBehaviour:
   resultsText: {fileID: 1401680280}
   cameraController: {fileID: 237226021}
   holdController: {fileID: 1263552773}
+  ioController: {fileID: 803768943}
   totalTime: 0
 --- !u!4 &1909136816
 Transform:
