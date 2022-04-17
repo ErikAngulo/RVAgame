@@ -7,8 +7,9 @@ public class HoldController : MonoBehaviour
 {
     public Camera cam;
     public TimeController timeController;
-    public ButtonController buttonController;
     public CameraController cameraController;
+    public ThrowStatisticController throwStatisticController;
+    public IOController ioController;
     public Transform guide;
     public float ballSpeed = 20.0f;
     public float destroyTime = 1.0f;
@@ -16,11 +17,13 @@ public class HoldController : MonoBehaviour
     public TextMeshProUGUI ballsText;
 
     private int _limit = 0;
+    private int _number = 0;
     private GameObject _ball;
     private bool _holdable = true;
     private Vector3 _position;
     private Quaternion _rotation;
     private Vector3 _localScale;
+    private bool _end = false;
 
     void Start(){
         if(totalLimit>0){
@@ -34,11 +37,17 @@ public class HoldController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!_holdable && Input.GetMouseButtonDown(1)){
-            Throw();
-        }else if(!_holdable && (totalLimit <= 0 || _limit > 0)){
-            _ball.transform.position = guide.position;
+        if(!_end){
+            if(!_holdable && Input.GetMouseButtonDown(1)){
+                Throw();
+            }else if(!_holdable && (totalLimit <= 0 || _limit > 0)){
+                _ball.transform.position = guide.position;
+            }
         }
+    }
+
+    public void EndGame(){
+        _end = true;
     }
 
     public void Try(GameObject go){
@@ -51,6 +60,7 @@ public class HoldController : MonoBehaviour
         if(totalLimit > 0 &&_limit<=0){
             timeController.ResultsTime();
             cameraController.EndGame();
+            ioController.Write();
         }
     }
 
@@ -59,6 +69,9 @@ public class HoldController : MonoBehaviour
             _ball = go;
             //We set the object parent to our guide empty object.
             _ball.transform.SetParent(guide);
+            
+            _ball.GetComponent<CollisionController>().SetNumber(_number);
+            _number += 1;
     
             //Set gravity to false while holding it
             _ball.GetComponent<Rigidbody>().useGravity = false;
@@ -88,19 +101,25 @@ public class HoldController : MonoBehaviour
         newBall.transform.localScale = _localScale;
         newBall.GetComponent<Rigidbody>().useGravity = true;
         newBall.GetComponent<Collider>().enabled = true;
+        _ball.GetComponent<CollisionController>().StartTime();
         _ball.GetComponent<Rigidbody>().useGravity = true;
         _ball.GetComponent<Rigidbody>().isKinematic = false;
         _ball.GetComponent<Collider>().enabled = true;
         _ball.transform.position = cam.transform.position;
         _ball.GetComponent<Rigidbody>().velocity = ballSpeed*cam.transform.forward;
+        Debug.Log(cam.transform.forward.ToString());
         _ball.tag = "Ball_throw";
         guide.GetChild(0).parent = null;
         timeController.UpdateTime();
+        throwStatisticController.AddSpeed(ballSpeed,_number);
+        throwStatisticController.AddAngle(cam.transform.forward,_number);
         if(totalLimit>0){
             _limit -=1;
             ballsText.text = "Balls: " + _limit;
             if(_limit>0){
                 _holdable = true;
+            }else{
+                EndGame();
             }
         }else{
             _holdable = true;
@@ -110,15 +129,18 @@ public class HoldController : MonoBehaviour
 
      IEnumerator DestroyTime(float time, GameObject go)
     {
+        bool col = go.GetComponent<CollisionController>().Collisionable();
+        while(col){
+            col = go.GetComponent<CollisionController>().Collisionable();
+            yield return null;
+        }
+
         float elapsedTime = 0;
 
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
             yield return null;
-        }
-        if(go.GetComponent<CollisionController>().getMissed()){
-            buttonController.Missed();
         }
         Destroy(go);
     }

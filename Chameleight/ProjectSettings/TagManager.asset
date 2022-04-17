@@ -8,14 +8,15 @@ TagManager:
   - Button
   - Ball
   - Ball_throw
+  - Panel
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ball
   - Water
   - UI
-  - 
+  - Limit
   - 
   - 
   - 
