@@ -14,9 +14,7 @@ public class dartController : MonoBehaviour
             Destroy(this.transform.parent.gameObject);
         }
     }
-    void OnCollisionEnter(Collision obj){
-        gameController.TargetHit(obj.gameObject);
-    }
+
     public void setAsTemporal(){
         _temporal = true;
     }

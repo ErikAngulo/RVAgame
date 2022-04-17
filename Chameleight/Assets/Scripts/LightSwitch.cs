@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
-    private GameObject light;
-    private int points;
+    
     public Light lightBO;
-    private bool _enabled = false;
+    public gameController gameController;
+    private float _points = 10.0f;
 
 
     //Detect collisions between the GameObjects with Colliders attached
@@ -16,23 +16,14 @@ public class LightSwitch : MonoBehaviour
 
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         string _dart = "Dart";
-        if (collision.gameObject.tag.Equals(_dart) && !_enabled)
+         
+        if (collision.gameObject.tag.Equals(_dart) && lightBO.enabled) 
         {
-            //If the GameObject's name matches the one you suggest, output this message in the console
-            lightBO.enabled = true;
-            _enabled = true;
-            Destroy(collision.gameObject);
-        }
-        //Check for a match with the specific tag on any GameObject that collides with your GameObject
-        else if (collision.gameObject.tag.Equals(_dart) && _enabled) 
-        {
-            //If the GameObject has the same tag as specified, output this message in the console
-            lightBO.enabled = false;
-            _enabled = false;
-            Destroy(collision.gameObject);
+            //If the GameObject has the same tag as specified:
+            gameController.TargetHit(lightBO, _points);
         }
         
-    }
+    }    
 
-    
+
 }

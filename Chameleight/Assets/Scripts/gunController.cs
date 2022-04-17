@@ -35,7 +35,6 @@ public class gunController : MonoBehaviour
 
     private void FireDart(){
         GameObject newDart = Instantiate(dart);
-        newDart.gameObject.GetComponentInChildren<dartController>().setAsTemporal();
         newDart.transform.position = transform.position;
         newDart.transform.rotation = transform.rotation;
         newDart.GetComponent<Rigidbody>().velocity = -newDart.transform.forward * dartSpeed;
