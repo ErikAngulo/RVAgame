@@ -7,6 +7,7 @@ public class LightSwitch : MonoBehaviour
     
     public Light lightBO;
     public gameController gameController;
+    public dartboardController dartboardController;
     private float _maxPoints = 10.0f;
 
 
@@ -46,6 +47,7 @@ public class LightSwitch : MonoBehaviour
             if (distance == 0.0f){ // avoid division by 0 (center) in next step
                 _points = _maxPoints;
                 gameController.TargetHit(lightBO, _points);
+                dartboardController.changePosition();
             }
             else if (distance <= diameter){
                 // _maxPoints variable will be if hit in center, else progresively decline until diameter (0 points)
@@ -53,6 +55,7 @@ public class LightSwitch : MonoBehaviour
                 float declineStep = _maxPoints / diameter;
                 _points = _maxPoints - declineStep * distance;
                 gameController.TargetHit(lightBO, _points);
+                dartboardController.changePosition();
             }
             // do nothing if collision but not inside dartboard (distance < diameter)
             
