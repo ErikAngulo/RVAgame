@@ -20,7 +20,7 @@ public class ButtonHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q)){
             if (SceneManager.GetActiveScene().name.Equals(_escena_principal)){
-                Application.Quit();
+                ExitGame();
             }
             else{
                 Cursor.visible = true;

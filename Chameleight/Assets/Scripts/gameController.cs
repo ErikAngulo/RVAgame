@@ -11,6 +11,7 @@ public class gameController : MonoBehaviour
     // PlaneLight Initialization
     public Light blueLight;
     public Light orangeLight;
+    public bool movement;
     private Light _choosedLight;
     // Scores
     private float _score = 0;
@@ -24,12 +25,20 @@ public class gameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         _optionLight.Add(blueLight);
         _optionLight.Add(orangeLight);
         int index = Random.Range(0, _optionLight.Count);
         _choosedLight = _optionLight[index];
         _choosedLight.enabled = true;
+        
+        dartboardController scriptOrange = GameObject.Find("orange").GetComponent<dartboardController>();
+        scriptOrange.movement = movement;
+        dartboardController scriptBlue = GameObject.Find("blue").GetComponent<dartboardController>();
+        scriptBlue.movement = movement;
     }
 
     // Update is called once per frame

@@ -5,6 +5,7 @@ using UnityEngine;
 public class dartboardController : MonoBehaviour
 {
 
+    public bool movement = true;
     float _lerpDuration = 2.0f;
     float _timeElapsed = 2.0f;
 
@@ -37,11 +38,14 @@ public class dartboardController : MonoBehaviour
     }
 
     public void changePosition(){
-        _startPosition = _targetPosition;
-        float posX = Random.Range(_originalLocation.x - _randomMoveX, _originalLocation.x + _randomMoveX);
-        float posY = Random.Range(_originalLocation.y - _randomMoveY, _originalLocation.y + _randomMoveY);
-        float posZ = _originalLocation.z;
-        _targetPosition = new Vector3(posX, posY, posZ);
-        _timeElapsed = 0.0f;
+        if (movement)
+        {
+            _startPosition = _targetPosition;
+            float posX = Random.Range(_originalLocation.x - _randomMoveX, _originalLocation.x + _randomMoveX);
+            float posY = Random.Range(_originalLocation.y - _randomMoveY, _originalLocation.y + _randomMoveY);
+            float posZ = _originalLocation.z;
+            _targetPosition = new Vector3(posX, posY, posZ);
+            _timeElapsed = 0.0f;
+        }
     }
 }

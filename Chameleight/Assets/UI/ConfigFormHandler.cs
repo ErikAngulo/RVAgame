@@ -10,7 +10,8 @@ public class ConfigFormHandler : MonoBehaviour
     public GameObject myCanvasHolder;
 
     private Canvas _myCanvas;
-    private string _test_game = "MainScene";
+    private string _ball_game = "MainScene";
+    private string _shooting_game = "Chameleight_Scenary";
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class ConfigFormHandler : MonoBehaviour
         TMPro.TextMeshProUGUI text2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").GetComponent<TMPro.TextMeshProUGUI>();
         Dropdown dropdown2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").Find("Dropdown2").GetComponent<Dropdown>();
 
-        if (StaticClass.SelectedGameScene.Equals(_test_game)){
+        if (StaticClass.SelectedGameScene.Equals(_ball_game)){
             text1.text = "Time";
             List<string> list1 = new List<string> { "30", "60" };
             foreach (string option in list1)
@@ -42,6 +43,18 @@ public class ConfigFormHandler : MonoBehaviour
             }
             dropdown2.value = 1;
         }
+        else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
+            text1.text = "Movement";
+            List<string> list1 = new List<string> { "Yes", "No" };
+            foreach (string option in list1)
+            {
+                dropdown1.options.Add(new Dropdown.OptionData(option));
+            }
+            dropdown1.value = 0;
+
+            text2.gameObject.SetActive(false);
+            dropdown2.gameObject.SetActive(false);
+        }
         
     }
 
@@ -55,8 +68,18 @@ public class ConfigFormHandler : MonoBehaviour
         Dropdown dropdown1 = _myCanvas.GetComponent<Transform>().Find("Input1Text").Find("Dropdown1").GetComponent<Dropdown>();
         Dropdown dropdown2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").Find("Dropdown2").GetComponent<Dropdown>();
 
-        StaticClass.Time = dropdown1.options[dropdown1.value].text;
-        StaticClass.BallSpeed = dropdown2.options[dropdown2.value].text;
+        if (StaticClass.SelectedGameScene.Equals(_ball_game)){
+            StaticClass.Time = float.Parse(dropdown1.options[dropdown1.value].text);
+            StaticClass.BallSpeed = float.Parse(dropdown2.options[dropdown2.value].text);
+        }
+        else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
+            if (dropdown1.value == 0){
+                StaticClass.TargetMovement = true;
+            }
+            else if (dropdown1.value == 1){
+                StaticClass.TargetMovement = false;
+            }
+        }
 
     }
 

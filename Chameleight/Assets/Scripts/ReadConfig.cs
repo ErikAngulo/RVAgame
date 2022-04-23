@@ -10,14 +10,19 @@ public class ReadConfig : MonoBehaviour
     public TimeController timeController;
     public HoldController holdController;
     public ButtonController buttonController;
+    public gameController gamecontroller;
 
-    private string _test_game = "MainScene";
+    private string _ball_game = "MainScene";
+    private string _shooting_game = "Chameleight_Scenary";
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name.Equals(_test_game)){
-            timeController.totalTime = float.Parse(StaticClass.Time);
-            holdController.ballSpeed = float.Parse(StaticClass.BallSpeed);
+        if (SceneManager.GetActiveScene().name.Equals(_ball_game)){
+            timeController.totalTime = StaticClass.Time;
+            holdController.ballSpeed = StaticClass.BallSpeed;
+        }
+        else if (SceneManager.GetActiveScene().name.Equals(_shooting_game)){
+            gamecontroller.movement = StaticClass.TargetMovement;
         }
     }
 
