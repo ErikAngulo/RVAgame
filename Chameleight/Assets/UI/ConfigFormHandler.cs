@@ -27,8 +27,8 @@ public class ConfigFormHandler : MonoBehaviour
         Dropdown dropdown2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").Find("Dropdown2").GetComponent<Dropdown>();
 
         if (StaticClass.SelectedGameScene.Equals(_ball_game)){
-            text1.text = "Time";
-            List<string> list1 = new List<string> { "30", "60" };
+            text1.text = "Ball limit";
+            List<string> list1 = new List<string> { "5", "10", "15" };
             foreach (string option in list1)
             {
                 dropdown1.options.Add(new Dropdown.OptionData(option));
@@ -36,12 +36,12 @@ public class ConfigFormHandler : MonoBehaviour
             dropdown1.value = 0;
 
             text2.text = "Ball speed";
-            List<string> list2 = new List<string> { "10", "20", "30" };
+            List<string> list2 = new List<string> { "8", "14", "20" };
             foreach (string option in list2)
             {
                 dropdown2.options.Add(new Dropdown.OptionData(option));
             }
-            dropdown2.value = 1;
+            dropdown2.value = 0;
         }
         else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
             text1.text = "Movement";
@@ -55,6 +55,9 @@ public class ConfigFormHandler : MonoBehaviour
             text2.gameObject.SetActive(false);
             dropdown2.gameObject.SetActive(false);
         }
+
+        dropdown1.RefreshShownValue();
+        dropdown2.RefreshShownValue();
         
     }
 
@@ -69,7 +72,7 @@ public class ConfigFormHandler : MonoBehaviour
         Dropdown dropdown2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").Find("Dropdown2").GetComponent<Dropdown>();
 
         if (StaticClass.SelectedGameScene.Equals(_ball_game)){
-            StaticClass.Time = float.Parse(dropdown1.options[dropdown1.value].text);
+            StaticClass.BallLimit = int.Parse(dropdown1.options[dropdown1.value].text);
             StaticClass.BallSpeed = float.Parse(dropdown2.options[dropdown2.value].text);
         }
         else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){

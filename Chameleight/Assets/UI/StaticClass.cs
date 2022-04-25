@@ -8,5 +8,6 @@ public static class StaticClass
 
     public static float Time { get; set; }
     public static float BallSpeed { get; set; }
+    public static int BallLimit { get; set; }
     public static bool TargetMovement { get; set; }
 }

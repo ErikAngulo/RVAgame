@@ -6,7 +6,8 @@ using TMPro;
 
 public class gameController : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
+    private TextMeshProUGUI _scoreText;
+    private TextMeshProUGUI _latestHitText;
     
     // PlaneLight Initialization
     public Light blueLight;
@@ -28,13 +29,15 @@ public class gameController : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        _scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
+        _latestHitText = GameObject.Find("LatestHitText").GetComponent<TextMeshProUGUI>();
+
         _optionLight.Add(blueLight);
         _optionLight.Add(orangeLight);
         int index = Random.Range(0, _optionLight.Count);
         _choosedLight = _optionLight[index];
         _choosedLight.enabled = true;
-        
+
         dartboardController scriptOrange = GameObject.Find("orange").GetComponent<dartboardController>();
         scriptOrange.movement = movement;
         dartboardController scriptBlue = GameObject.Find("blue").GetComponent<dartboardController>();
@@ -56,7 +59,8 @@ public class gameController : MonoBehaviour
 
     public void TargetHit(Light lightTargetTouched, float _points){
         _score += _points;
-        scoreText.text = "Score: " + _score;
+        _scoreText.text = "Score: " + _score.ToString("F2");
+        _latestHitText.text = "Latest: " + _points.ToString("F2");
 
        lightTargetTouched.enabled = false;
        _collision = true;

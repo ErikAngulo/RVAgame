@@ -18,7 +18,7 @@ public class ReadConfig : MonoBehaviour
     void Start()
     {
         if (SceneManager.GetActiveScene().name.Equals(_ball_game)){
-            timeController.totalTime = StaticClass.Time;
+            holdController.totalLimit = StaticClass.BallLimit;
             holdController.ballSpeed = StaticClass.BallSpeed;
         }
         else if (SceneManager.GetActiveScene().name.Equals(_shooting_game)){
