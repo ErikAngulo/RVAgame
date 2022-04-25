@@ -13,6 +13,7 @@ public class gameController : MonoBehaviour
     public Light blueLight;
     public Light orangeLight;
     public bool movement;
+    public AudioSource soundLight;
     private Light _choosedLight;
     // Scores
     private float _score = 0;
@@ -53,6 +54,7 @@ public class gameController : MonoBehaviour
             _choosedLight = _optionLight[index];
             _choosedLight.enabled = true;
             _collision = false;
+            soundLight.Play();
       }
                       
     }

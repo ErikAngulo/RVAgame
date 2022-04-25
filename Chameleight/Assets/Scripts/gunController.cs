@@ -7,6 +7,7 @@ public class gunController : MonoBehaviour
     public float sensitivity = 5.0f;
     public GameObject dart;
     public float dartSpeed = 20.0f;
+    public AudioSource shootSound;
 
     private Vector3 _angles = Vector3.zero;
     private float _max_angle = 60.0f;
@@ -34,6 +35,7 @@ public class gunController : MonoBehaviour
     }
 
     private void FireDart(){
+        shootSound.Play();
         GameObject newDart = Instantiate(dart);
         newDart.gameObject.GetComponentInChildren<dartController>().setAsTemporal();
         newDart.transform.position = transform.position;

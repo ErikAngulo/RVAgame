@@ -8,6 +8,10 @@ public class LightSwitch : MonoBehaviour
     public Light lightBO;
     public gameController gameController;
     public dartboardController dartboardController;
+    public GameObject bulletHole;
+    public AudioSource normalHitSound;
+    public AudioSource badHitSound;
+    public AudioSource goodHitSound;
     private float _maxPoints = 10.0f;
 
 
@@ -46,6 +50,7 @@ public class LightSwitch : MonoBehaviour
             float diameter = boxcoll.size.x / 2 * transform.localScale.x;
             if (distance == 0.0f){ // avoid division by 0 (center) in next step
                 _points = _maxPoints;
+                drawBulletHoleAndSound(pos, _points);
                 gameController.TargetHit(lightBO, _points);
                 dartboardController.changePosition();
             }
@@ -54,6 +59,7 @@ public class LightSwitch : MonoBehaviour
                 // in diameter: maxPoints - declineStep * diameter = 0 --> declineStep = maxPoints / diameter
                 float declineStep = _maxPoints / diameter;
                 _points = _maxPoints - declineStep * distance;
+                drawBulletHoleAndSound(pos, _points);
                 gameController.TargetHit(lightBO, _points);
                 dartboardController.changePosition();
             }
@@ -63,5 +69,25 @@ public class LightSwitch : MonoBehaviour
         
     }    
 
+    void drawBulletHoleAndSound(Vector3 pos, float points){
+        // sound effect
+        float lowPercentage = 0.25f;
+        float highPercentage = 0.7f;
+        if (points < lowPercentage * _maxPoints){
+            badHitSound.Play();
+        }
+        else if (points > highPercentage * _maxPoints){
+            goodHitSound.Play();
+        }
+        else {
+            normalHitSound.Play();
+        }
+        // draw bullet hole
+        GameObject newBulletHole = Instantiate(bulletHole);
+        newBulletHole.gameObject.GetComponentInChildren<dartController>().changeLifetime(1.5f);
+        newBulletHole.gameObject.GetComponentInChildren<dartController>().setAsTemporal();
+        newBulletHole.transform.position = new Vector3(pos.x, pos.y, pos.z + 0.2f);
+        newBulletHole.transform.SetParent(dartboardController.transform);
+    }
 
 }

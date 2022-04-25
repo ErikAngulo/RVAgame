@@ -18,4 +18,8 @@ public class dartController : MonoBehaviour
     public void setAsTemporal(){
         _temporal = true;
     }
+
+    public void changeLifetime(float lifetime){
+        _lifeTime = lifetime;
+    }
 }
