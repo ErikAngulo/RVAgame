@@ -52,8 +52,13 @@ public class ConfigFormHandler : MonoBehaviour
             }
             dropdown1.value = 0;
 
-            text2.gameObject.SetActive(false);
-            dropdown2.gameObject.SetActive(false);
+            text2.text = "Time limit";
+            List<string> list2 = new List<string> { "60", "90", "120" };
+            foreach (string option in list2)
+            {
+                dropdown2.options.Add(new Dropdown.OptionData(option));
+            }
+            dropdown2.value = 0;
         }
 
         dropdown1.RefreshShownValue();
@@ -76,6 +81,7 @@ public class ConfigFormHandler : MonoBehaviour
             StaticClass.BallSpeed = float.Parse(dropdown2.options[dropdown2.value].text);
         }
         else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
+            StaticClass.Time = float.Parse(dropdown2.options[dropdown2.value].text);;
             if (dropdown1.value == 0){
                 StaticClass.TargetMovement = true;
             }

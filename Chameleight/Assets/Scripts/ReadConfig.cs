@@ -23,6 +23,7 @@ public class ReadConfig : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name.Equals(_shooting_game)){
             gamecontroller.movement = StaticClass.TargetMovement;
+            gamecontroller.playTime = StaticClass.Time;
         }
     }
 

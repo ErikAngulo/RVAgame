@@ -8,6 +8,7 @@ public class gameController : MonoBehaviour
 {
     private TextMeshProUGUI _scoreText;
     private TextMeshProUGUI _latestHitText;
+    private TextMeshProUGUI _remainingTime;
     
     // PlaneLight Initialization
     public Light blueLight;
@@ -15,6 +16,7 @@ public class gameController : MonoBehaviour
     public bool movement;
     public AudioSource soundLight;
     private Light _choosedLight;
+    public float playTime;
     // Scores
     private float _score = 0;
     //private bool _enabled = false;
@@ -23,6 +25,7 @@ public class gameController : MonoBehaviour
     private List<Light> _optionLight = new List<Light>();
     private float wait = -1.0f;
     private bool _collision = false;
+    private string scoreScene = "GameOverScene";
     
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,7 @@ public class gameController : MonoBehaviour
 
         _scoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
         _latestHitText = GameObject.Find("LatestHitText").GetComponent<TextMeshProUGUI>();
+        _remainingTime = GameObject.Find("RemainingTimeText").GetComponent<TextMeshProUGUI>();
 
         _optionLight.Add(blueLight);
         _optionLight.Add(orangeLight);
@@ -55,6 +59,11 @@ public class gameController : MonoBehaviour
             _choosedLight.enabled = true;
             _collision = false;
             soundLight.Play();
+      }
+      playTime -= Time.deltaTime;
+      _remainingTime.text = "Time: " + playTime.ToString("F1") + "s";
+      if (playTime < 0.0f){
+        GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(scoreScene);
       }
                       
     }
