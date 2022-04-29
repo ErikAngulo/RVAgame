@@ -51,7 +51,7 @@ public class LightSwitch : MonoBehaviour
             if (distance == 0.0f){ // avoid division by 0 (center) in next step
                 _points = _maxPoints;
                 drawBulletHoleAndSound(pos, _points);
-                gameController.TargetHit(lightBO, _points);
+                gameController.TargetHit(lightBO, _points, transformed);
                 dartboardController.changePosition();
             }
             else if (distance <= diameter){
@@ -60,7 +60,7 @@ public class LightSwitch : MonoBehaviour
                 float declineStep = _maxPoints / diameter;
                 _points = _maxPoints - declineStep * distance;
                 drawBulletHoleAndSound(pos, _points);
-                gameController.TargetHit(lightBO, _points);
+                gameController.TargetHit(lightBO, _points, transformed);
                 dartboardController.changePosition();
             }
             // do nothing if collision but not inside dartboard (distance < diameter)

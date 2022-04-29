@@ -11,6 +11,7 @@ public class gunController : MonoBehaviour
 
     private Vector3 _angles = Vector3.zero;
     private float _max_angle = 60.0f;
+    private int _dartsUsed = 0;
     
     // Update is called once per frame
     void Update()
@@ -41,5 +42,12 @@ public class gunController : MonoBehaviour
         newDart.transform.position = transform.position;
         newDart.transform.rotation = transform.rotation;
         newDart.GetComponent<Rigidbody>().velocity = -newDart.transform.forward * dartSpeed;
+        _dartsUsed += 1;
+    }
+
+    public int dartsFiredAndReset(){
+        int used = _dartsUsed;
+        _dartsUsed = 0;
+        return (used);
     }
 }

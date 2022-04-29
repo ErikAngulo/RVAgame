@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System;
+using System;
 using UnityEngine;
 using TMPro;
+using System.IO;
+using System.Globalization;
 
 public class gameController : MonoBehaviour
 {
@@ -26,6 +28,16 @@ public class gameController : MonoBehaviour
     private float wait = -1.0f;
     private bool _collision = false;
     private string scoreScene = "GameOverScene";
+
+    private gunController guncontroller;
+    private bool _finished = false;
+    private float _timeNeededToHit = 0.0f;
+    private List<string> _nLight = new List<string>();
+    private List<float> _nTimeToHit = new List<float>();
+    private List<float> _nCoordX = new List<float>();
+    private List<float> _nCoordY = new List<float>();
+    private List<float> _nPoints = new List<float>();
+    private List<int> _nBulletsToHit = new List<int>();
     
     // Start is called before the first frame update
     void Start()
@@ -39,7 +51,7 @@ public class gameController : MonoBehaviour
 
         _optionLight.Add(blueLight);
         _optionLight.Add(orangeLight);
-        int index = Random.Range(0, _optionLight.Count);
+        int index = UnityEngine.Random.Range(0, _optionLight.Count);
         _choosedLight = _optionLight[index];
         _choosedLight.enabled = true;
 
@@ -47,6 +59,8 @@ public class gameController : MonoBehaviour
         scriptOrange.movement = movement;
         dartboardController scriptBlue = GameObject.Find("blue").GetComponent<dartboardController>();
         scriptBlue.movement = movement;
+
+        guncontroller = GameObject.Find("Gun").GetComponent<gunController>();
     }
 
     // Update is called once per frame
@@ -54,27 +68,76 @@ public class gameController : MonoBehaviour
     {  
       wait -= Time.deltaTime;
       if (wait <= 0 && _collision){
-            int index = Random.Range(0, _optionLight.Count);
+            int index = UnityEngine.Random.Range(0, _optionLight.Count);
             _choosedLight = _optionLight[index];
             _choosedLight.enabled = true;
             _collision = false;
             soundLight.Play();
+            
+            _timeNeededToHit = 0.0f;
       }
       playTime -= Time.deltaTime;
       _remainingTime.text = "Time: " + playTime.ToString("F1") + "s";
-      if (playTime < 0.0f){
+      if (playTime < 0.0f && !_finished){
+        _finished = true;
+        saveData();
         GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(scoreScene);
       }
-                      
+
+      _timeNeededToHit += Time.deltaTime;            
     }
 
-    public void TargetHit(Light lightTargetTouched, float _points){
+    public void TargetHit(Light lightTargetTouched, float _points, Vector3 _coord){
+        //coordX and coordY considering centre of target is 0,0
         _score += _points;
         _scoreText.text = "Score: " + _score.ToString("F2");
         _latestHitText.text = "Latest: " + _points.ToString("F2");
 
        lightTargetTouched.enabled = false;
        _collision = true;
-       wait = Random.Range(0.5f,5.0f);
+       wait = UnityEngine.Random.Range(0.5f,5.0f);
+
+      // save instance each hit
+      if (lightTargetTouched.GetInstanceID() == blueLight.GetInstanceID()){
+        _nLight.Add("Blue");
+      }
+      else if (lightTargetTouched.GetInstanceID() == orangeLight.GetInstanceID()){
+        _nLight.Add("Orange");
+      }
+      else{
+        _nLight.Add("Unknown");
+      }
+      _nTimeToHit.Add(_timeNeededToHit);
+      _nCoordX.Add(_coord.x);
+      _nCoordY.Add(_coord.y);
+      _nPoints.Add(_points);
+      int bulletsUsed = guncontroller.dartsFiredAndReset();
+      _nBulletsToHit.Add(bulletsUsed);
+    }
+
+    void saveData(){
+        NumberFormatInfo nfi = new NumberFormatInfo();
+        nfi.NumberDecimalSeparator = ".";
+        using (StreamWriter writer = File.AppendText("../Database/shoot_temp_"+DateTime.UtcNow.ToString("MM-dd-yyyy")+".csv"))
+        {
+            // writer.Write("Instance,LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
+            // writer.Write(System.Environment.NewLine);
+            for(int i = 0; i < _nLight.Count; i++){
+              writer.Write(i.ToString(nfi));  
+              writer.Write(",");
+              writer.Write(_nLight[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nTimeToHit[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nCoordX[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nCoordY[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nPoints[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nBulletsToHit[i].ToString(nfi));
+              writer.Write(System.Environment.NewLine);
+            }
+        }
     }
 }
