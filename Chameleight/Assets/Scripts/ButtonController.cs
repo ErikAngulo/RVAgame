@@ -15,10 +15,10 @@ public class ButtonController : MonoBehaviour
             if(ball != null){
                 if(ball.GetComponent<Renderer>().material.color==go.GetComponent<Renderer>().material.color){
                     Debug.Log("Correct!");
-                    scoreController.Correct(ballNumber);
+                    scoreController.Correct(ballNumber,ball.GetComponent<Renderer>().material.name);
                 }else{
                     Debug.Log("Incorrect!");
-                    scoreController.Incorrect(ballNumber);
+                    scoreController.Incorrect(ballNumber,ball.GetComponent<Renderer>().material.name);
                 }
             }else{
                 Debug.Log("Use the balls!");

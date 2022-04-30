@@ -127,4 +127,12 @@ public class TimeController : MonoBehaviour
     public List<(int,float)> GetThrow(){
         return _timesThrowList;
     }
+
+    public float GetTotal(){
+        if(totalTime>0.0f){
+            return totalTime;
+        }else{
+            return Time.time-_generalTime;
+        }
+    }
 }

@@ -107,6 +107,7 @@ public class HoldController : MonoBehaviour
         _ball.GetComponent<Collider>().enabled = true;
         _ball.transform.position = cam.transform.position;
         _ball.GetComponent<Rigidbody>().velocity = ballSpeed*cam.transform.forward;
+        Debug.Log(ballSpeed);
         Debug.Log(cam.transform.forward.ToString());
         _ball.tag = "Ball_throw";
         guide.GetChild(0).parent = null;

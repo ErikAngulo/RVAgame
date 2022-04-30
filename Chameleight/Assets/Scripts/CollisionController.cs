@@ -12,7 +12,6 @@ public class CollisionController : MonoBehaviour
     private bool _collisionable = true;
     private int _ballNumber = 0;
     private float _timeThrow = 0.0f;
-    private bool _timeableThrow = false;
 
     // Start is called before the first frame update
     void OnCollisionEnter(Collision theCollision)
@@ -25,12 +24,12 @@ public class CollisionController : MonoBehaviour
                 EndTime();
                 holdController.Limit();
             }else if(theCollision.gameObject.tag == "Panel"){
-                scoreController.Missed(_ballNumber);
+                scoreController.Missed(_ballNumber,this.gameObject.GetComponent<Renderer>().material.name);
                 _collisionable = false;
                 EndTime();
                 holdController.Limit();
             }else if(theCollision.gameObject.tag == "Floor"){
-                scoreController.Out(_ballNumber);
+                scoreController.Out(_ballNumber,this.gameObject.GetComponent<Renderer>().material.name);
                 _collisionable = false;
                 EndTime();
                 holdController.Limit();
@@ -52,7 +51,7 @@ public class CollisionController : MonoBehaviour
 
     public void Out(){
          if(_collisionable){
-            scoreController.Out(_ballNumber);
+            scoreController.Out(_ballNumber,this.gameObject.GetComponent<Renderer>().material.name);
             _collisionable = false;
             EndTime();
             holdController.Limit();
