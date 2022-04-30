@@ -25,6 +25,8 @@ public class HoldController : MonoBehaviour
     private Vector3 _localScale;
     private bool _end = false;
 
+    private string _scoreScene = "GameOverScene";
+
     void Start(){
         if(totalLimit>0){
             _limit = totalLimit;
@@ -61,6 +63,7 @@ public class HoldController : MonoBehaviour
             timeController.ResultsTime();
             cameraController.EndGame();
             ioController.Write();
+            GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
         }
     }
 

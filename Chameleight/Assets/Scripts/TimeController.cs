@@ -25,6 +25,8 @@ public class TimeController : MonoBehaviour
     private List<(int,float)> _timesDecisionList = new List<(int,float)>();
     private List<(int,float)> _timesThrowList = new List<(int,float)>();
 
+    private string _scoreScene = "GameOverScene";
+
     public void Start(){
         generalTimeText.text = "Time: " + totalTime.ToString("0.0") + "s";
         _generalTime = Time.time;
@@ -54,7 +56,7 @@ public class TimeController : MonoBehaviour
                 ResultsTime();
                 cameraController.EndGame();
                 holdController.EndGame();
-                ioController.Write();
+                GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
             }
         }
     }
@@ -91,6 +93,8 @@ public class TimeController : MonoBehaviour
         }
         text += " Throw: " + totalThrow.ToString("0.0") + "s";
         resultsText.text = text;
+
+        StaticClass.scoreText = text;
     }
 
     public void UpdateTime(){

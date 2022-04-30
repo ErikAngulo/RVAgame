@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using System.IO;
 using System.Globalization;
+using System.Linq;
 
 public class gameController : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class gameController : MonoBehaviour
     private List<Light> _optionLight = new List<Light>();
     private float wait = -1.0f;
     private bool _collision = false;
-    private string scoreScene = "GameOverScene";
+    private string _scoreScene = "GameOverScene";
 
     private gunController guncontroller;
     private bool _finished = false;
@@ -81,7 +82,8 @@ public class gameController : MonoBehaviour
       if (playTime < 0.0f && !_finished){
         _finished = true;
         saveData();
-        GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(scoreScene);
+        getScores();
+        GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
       }
 
       _timeNeededToHit += Time.deltaTime;            
@@ -139,5 +141,25 @@ public class gameController : MonoBehaviour
               writer.Write(System.Environment.NewLine);
             }
         }
+    }
+
+    void getScores(){
+      string totalScore = "Total score: " + _score.ToString("F2");
+      string meanPunct = "Mean of points scored: " + _nPoints.Average().ToString("F2");
+      string maxPunct = "Best shot points: " + _nPoints.Max().ToString("F2");
+      string minPunct = "Worst shot points: " + _nPoints.Min().ToString("F2");
+      string meanBullets = "Mean of bullets used to hit: " + _nBulletsToHit.Average().ToString("F2");
+      string meanTime = "Mean time to hit target since light on: " + _nTimeToHit.Average().ToString("F2");
+      StaticClass.scoreText = totalScore +
+                              System.Environment.NewLine + 
+                              meanPunct + 
+                              System.Environment.NewLine + 
+                              maxPunct + 
+                              System.Environment.NewLine + 
+                              minPunct + 
+                              System.Environment.NewLine + 
+                              meanBullets + 
+                              System.Environment.NewLine +
+                              meanTime;
     }
 }
