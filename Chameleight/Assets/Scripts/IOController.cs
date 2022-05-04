@@ -22,11 +22,11 @@ public class IOController : MonoBehaviour
         List<(int,float)> decisions = timeController.GetDecision();
         List<(int,float)> throws = timeController.GetThrow();
         //Dummy IDs
-        int id = 0;
+        int id = StaticClass.playerId;
         int game_id = 0;
         int balls = scores.Count;
         float time = timeController.GetTotal();
-        string date = System.DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss"); 
+        string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"); 
         scores.Sort(delegate ((int, string) emp1, (int, string) emp2) 
         {
             return emp1.Item1.CompareTo(emp2.Item1);

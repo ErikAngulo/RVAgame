@@ -118,14 +118,23 @@ public class gameController : MonoBehaviour
     }
 
     void saveData(){
+        int id = StaticClass.playerId;
+        int game_id = 0; //dummy
+        string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
-        using (StreamWriter writer = File.AppendText("../Database/shoot_temp_"+DateTime.UtcNow.ToString("yyyy-MM-dd_hh-mm-ss")+".csv"))
+        using (StreamWriter writer = File.AppendText("../Database/shoot_temp_"+date+".csv"))
         {
-            // writer.Write("Instance,LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
+            // writer.Write("Instance,id,gameId,date,LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
             // writer.Write(System.Environment.NewLine);
             for(int i = 0; i < _nLight.Count; i++){
               writer.Write(i.ToString(nfi));  
+              writer.Write(",");
+              writer.Write(id.ToString(nfi));  
+              writer.Write(",");
+              writer.Write(game_id.ToString(nfi));  
+              writer.Write(",");
+              writer.Write(date);  
               writer.Write(",");
               writer.Write(_nLight[i].ToString(nfi));
               writer.Write(",");
@@ -145,12 +154,15 @@ public class gameController : MonoBehaviour
 
     void getScores(){
       string totalScore = "Total score: " + _score.ToString("F2");
+      string totalLights = "Succeeded hits: " + _nLight.Count.ToString("F2");
       string meanPunct = "Mean of points scored: " + _nPoints.Average().ToString("F2");
       string maxPunct = "Best shot points: " + _nPoints.Max().ToString("F2");
       string minPunct = "Worst shot points: " + _nPoints.Min().ToString("F2");
       string meanBullets = "Mean of bullets used to hit: " + _nBulletsToHit.Average().ToString("F2");
       string meanTime = "Mean time to hit target since light on: " + _nTimeToHit.Average().ToString("F2");
       StaticClass.scoreText = totalScore +
+                              System.Environment.NewLine + 
+                              totalLights +
                               System.Environment.NewLine + 
                               meanPunct + 
                               System.Environment.NewLine + 

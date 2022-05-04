@@ -1464,6 +1464,7 @@ MonoBehaviour:
   holdController: {fileID: 1263552773}
   buttonController: {fileID: 1950538386}
   gamecontroller: {fileID: 0}
+  text: {fileID: 0}
 --- !u!4 &1196414709
 Transform:
   m_ObjectHideFlags: 0
@@ -2698,6 +2699,7 @@ MonoBehaviour:
   cameraController: {fileID: 237226021}
   holdController: {fileID: 1263552773}
   ioController: {fileID: 803768943}
+  scoreController: {fileID: 353303873}
   totalTime: 0
 --- !u!4 &1909136816
 Transform:

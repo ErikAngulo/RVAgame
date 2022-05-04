@@ -12,6 +12,7 @@ public class TimeController : MonoBehaviour
     public CameraController cameraController;
     public HoldController holdController;
     public IOController ioController;
+    public ScoreController scoreController;
     public float totalTime = 0.0f;
     private float _generalTime = 0.0f;
     private float _timeReaction = 0.0f;
@@ -73,7 +74,7 @@ public class TimeController : MonoBehaviour
         if(_timesReactionList.Count>0){
             totalReaction /= _timesReactionList.Count;
         }
-        string text = "Reaction: " + totalReaction.ToString("0.0") + "s";
+        string reactionText = "Mean Reaction time: " + totalReaction.ToString("0.0") + "s";
         float totalDecision = 0.0f;
         foreach(var d in _timesDecisionList)
         {    
@@ -82,7 +83,7 @@ public class TimeController : MonoBehaviour
         if(_timesDecisionList.Count>0){
             totalDecision /= _timesDecisionList.Count;
         }
-        text += " Decision: " + totalDecision.ToString("0.0") + "s";
+        string decisionText = "Mean Decision time: " + totalDecision.ToString("0.0") + "s";
         float totalThrow = 0.0f;
         foreach(var d in _timesThrowList)
         {    
@@ -91,10 +92,22 @@ public class TimeController : MonoBehaviour
         if(_timesThrowList.Count>0){
             totalThrow /= _timesThrowList.Count;
         }
-        text += " Throw: " + totalThrow.ToString("0.0") + "s";
-        resultsText.text = text;
+        string throwText = "Mean Throw time: " + totalThrow.ToString("0.0") + "s";
+        resultsText.text = reactionText + decisionText + throwText;
 
-        StaticClass.scoreText = text;
+        StaticClass.scoreText = reactionText +
+                              System.Environment.NewLine + 
+                              decisionText +
+                              System.Environment.NewLine + 
+                              throwText + 
+                              System.Environment.NewLine + 
+                              scoreController.correctText.text + 
+                              System.Environment.NewLine + 
+                              scoreController.incorrectText.text + 
+                              System.Environment.NewLine + 
+                              scoreController.missedText.text + 
+                              System.Environment.NewLine +
+                              scoreController.outText.text;
     }
 
     public void UpdateTime(){

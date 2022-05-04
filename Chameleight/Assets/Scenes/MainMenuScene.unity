@@ -938,20 +938,56 @@ PrefabInstance:
       value: Log out
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 151980734}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 151980734}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChangeScene
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetCurrentPlayerId
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: WelcomeScene
       objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9037321755533932754, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932756, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_Name
-      value: ReturnButton
+      value: LogOutButton
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_Pivot.x
