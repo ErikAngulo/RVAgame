@@ -37,6 +37,7 @@ public class QuestionaryValidation : MonoBehaviour
     public Slider weight;
     public Text warning;
     public ButtonHandler buttonHandler;
+    private string _main_scene = "MainMenuScene";
     // Start is called before the first frame update
 
     private bool IsValidEmailAddress(string s)
@@ -133,6 +134,10 @@ public class QuestionaryValidation : MonoBehaviour
         Debug.Log(PlayerStats.competing_years);
         Debug.Log(PlayerStats.height);
         Debug.Log(PlayerStats.weight);
+
+
+        // after registering user, go to menu:
+        buttonHandler.ChangeScene(_main_scene);
     }
 
     //STORE INFORMATION!
