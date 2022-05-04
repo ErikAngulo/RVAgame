@@ -120,7 +120,7 @@ public class gameController : MonoBehaviour
     void saveData(){
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
-        using (StreamWriter writer = File.AppendText("../Database/shoot_temp_"+DateTime.UtcNow.ToString("MM-dd-yyyy")+".csv"))
+        using (StreamWriter writer = File.AppendText("../Database/shoot_temp_"+DateTime.UtcNow.ToString("yyyy-MM-dd_hh-mm-ss")+".csv"))
         {
             // writer.Write("Instance,LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
             // writer.Write(System.Environment.NewLine);

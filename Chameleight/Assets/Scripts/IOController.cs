@@ -26,7 +26,7 @@ public class IOController : MonoBehaviour
         int game_id = 0;
         int balls = scores.Count;
         float time = timeController.GetTotal();
-        string date = System.DateTime.Now.ToString("yyyy-MM-dd_hh:mm:ss"); 
+        string date = System.DateTime.Now.ToString("yyyy-MM-dd_hh-mm-ss"); 
         scores.Sort(delegate ((int, string) emp1, (int, string) emp2) 
         {
             return emp1.Item1.CompareTo(emp2.Item1);
