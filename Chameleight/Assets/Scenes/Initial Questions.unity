@@ -382,8 +382,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: -98}
-  m_SizeDelta: {x: 63.4344, y: 20.937}
+  m_AnchoredPosition: {x: -191.5757, y: -97.019}
+  m_SizeDelta: {x: 115.3556, y: 19.284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &58502009
 MonoBehaviour:
@@ -4102,6 +4102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc47a11265e5c92868809ea8e4df1233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  iOController: {fileID: 0}
   player_name: {fileID: 1777604372}
   email: {fileID: 1875023522}
   day: {fileID: 738965191}
@@ -4419,8 +4420,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -307, y: -98}
-  m_SizeDelta: {x: 63.4344, y: 20.937}
+  m_AnchoredPosition: {x: -306, y: -97.019}
+  m_SizeDelta: {x: 54.6342, y: 19.284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1301364958
 MonoBehaviour:
@@ -5132,8 +5133,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 9, y: -0.5}
-  m_SizeDelta: {x: -28, y: -3}
+  m_AnchoredPosition: {x: 38.040695, y: -1.4}
+  m_SizeDelta: {x: 30.0813, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1693350755
 MonoBehaviour:
@@ -5168,7 +5169,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Both
+  m_Text: Ambidextrous
 --- !u!222 &1693350756
 CanvasRenderer:
   m_ObjectHideFlags: 0

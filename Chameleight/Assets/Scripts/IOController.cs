@@ -13,7 +13,7 @@ public class IOController : MonoBehaviour
     public ScoreController scoreController;
     public ThrowStatisticController throwStatisticController;
 
-    public void Write(){
+    public void WriteStatistics1(){
         List<(int,string)> scores = scoreController.GetScores();
         List<(int,string)> colors = scoreController.GetColors();
         List<(int,float)> speeds = throwStatisticController.GetSpeeds();
@@ -22,7 +22,7 @@ public class IOController : MonoBehaviour
         List<(int,float)> decisions = timeController.GetDecision();
         List<(int,float)> throws = timeController.GetThrow();
         //Dummy IDs
-        int id = StaticClass.playerId;
+        string id = StaticClass.playerId;
         int game_id = 0;
         int balls = scores.Count;
         float time = timeController.GetTotal();
@@ -58,14 +58,23 @@ public class IOController : MonoBehaviour
 
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
-        using (StreamWriter sw = File.AppendText("../Database/"+id.ToString()+"_"+game_id.ToString()+"_"+date+".csv"))
+        using (StreamWriter sw = File.AppendText("../Database/"+id+"/game1.csv"))
         {
             for(int i = 0; i < scores.Count; i++){
-                sw.WriteLine(id.ToString()+","+game_id.ToString()+","+date+","+i.ToString()+","+time.ToString(nfi)+","+balls.ToString()+","+colors.ElementAt(i).Item2.ToString()+","
+                sw.WriteLine(id+","+game_id.ToString()+","+date+","+i.ToString()+","+time.ToString(nfi)+","+balls.ToString()+","+colors.ElementAt(i).Item2.ToString()+","
                 +scores.ElementAt(i).Item2.ToString()+","+speeds.ElementAt(i).Item2.ToString(nfi)+","+angles.ElementAt(i).Item2.x.ToString(nfi)+","
                 +angles.ElementAt(i).Item2.y.ToString(nfi)+","+angles.ElementAt(i).Item2.z.ToString(nfi)+","+reactions.ElementAt(i).Item2.ToString(nfi)+","
                 +decisions.ElementAt(i).Item2.ToString(nfi)+","+throws.ElementAt(i).Item2.ToString(nfi));
             }
+        }
+    }
+
+    public void RegisterUser(){
+        Directory.CreateDirectory("../Database/"+PlayerInfo.email);
+        using (StreamWriter sw = File.AppendText("../Database/"+PlayerInfo.email+"/user_info.csv"))
+        {
+            sw.WriteLine(PlayerInfo.email+","+PlayerInfo.player_name+","+PlayerInfo.birthday.ToString()+","+PlayerInfo.gender+","+PlayerInfo.laterality+","+PlayerInfo.sport+
+            ","+PlayerInfo.level+","+PlayerInfo.competing_years.ToString()+","+PlayerInfo.height.ToString()+","+PlayerInfo.weight.ToString());
         }
     }
 }

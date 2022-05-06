@@ -62,7 +62,7 @@ public class HoldController : MonoBehaviour
         if(totalLimit > 0 &&_limit<=0){
             timeController.ResultsTime();
             cameraController.EndGame();
-            ioController.Write();
+            ioController.WriteStatistics1();
             GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
         }
     }

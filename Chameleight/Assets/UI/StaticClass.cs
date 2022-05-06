@@ -11,5 +11,5 @@ public static class StaticClass
     public static int BallLimit { get; set; }
     public static bool TargetMovement { get; set; }
     public static string scoreText { get; set; }
-    public static int playerId { get; set; } = -1;
+    public static string playerId { get; set; } = "";
 }

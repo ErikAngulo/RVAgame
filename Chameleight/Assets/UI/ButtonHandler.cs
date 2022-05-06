@@ -57,7 +57,7 @@ public class ButtonHandler : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetCurrentPlayerId(int id){
+    public void SetCurrentPlayerId(string id){
         StaticClass.playerId = id;
     }
 

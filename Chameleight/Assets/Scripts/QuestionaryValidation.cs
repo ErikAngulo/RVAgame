@@ -5,9 +5,10 @@ using UnityEngine;
 using TMPro;
 using System.Text.RegularExpressions;
 using System;
+using System.IO;
 using System.Globalization;
 
-public static class PlayerStats
+public static class PlayerInfo
 {
     public static string player_name { get; set; }
     public static string email { get; set; }
@@ -23,6 +24,7 @@ public static class PlayerStats
 
 public class QuestionaryValidation : MonoBehaviour
 {
+    public IOController iOController;
     public TMP_InputField player_name;
     public TMP_InputField email;
     public TMP_InputField day;
@@ -54,6 +56,10 @@ public class QuestionaryValidation : MonoBehaviour
             warning.text = "Please, enter a valid email address.";
             return;
         }
+        if(Directory.Exists("../Database/"+email.text)){
+            warning.text = "A user with the specified email already exists.";
+            return;
+        }
         string y = year.text;
         int current = int.Parse(DateTime.Now.ToString("yyyy"));
         if(int.Parse(y)<current-100 || int.Parse(y)>=current){
@@ -80,15 +86,15 @@ public class QuestionaryValidation : MonoBehaviour
         }
         warning.text = "";
 
-        PlayerStats.player_name = player_name.text;
-        PlayerStats.email = email.text;
-        PlayerStats.birthday = dateVal;
+        PlayerInfo.player_name = player_name.text;
+        PlayerInfo.email = email.text;
+        PlayerInfo.birthday = dateVal;
         IEnumerator<Toggle> toggles = gender.ActiveToggles().GetEnumerator();
         toggles.MoveNext();
-        PlayerStats.gender = toggles.Current.GetComponentInChildren<Text>().text;
+        PlayerInfo.gender = toggles.Current.GetComponentInChildren<Text>().text;
         toggles = laterality.ActiveToggles().GetEnumerator();
         toggles.MoveNext();
-        PlayerStats.laterality = toggles.Current.GetComponentInChildren<Text>().text;
+        PlayerInfo.laterality = toggles.Current.GetComponentInChildren<Text>().text;
         buttonHandler.ChangeScene("Initial Questions 2");
     }
 
@@ -111,9 +117,9 @@ public class QuestionaryValidation : MonoBehaviour
 
         DateTime today = DateTime.Today;
 
-        int age = today.Year - PlayerStats.birthday.Year;
+        int age = today.Year - PlayerInfo.birthday.Year;
 
-        if (PlayerStats.birthday > today.AddYears(-age)) age--;
+        if (PlayerInfo.birthday > today.AddYears(-age)) age--;
 
         if(int.Parse(competing_years.text)>age){
             warning.text = "Number of competing years must be less than or equal to your age.";
@@ -122,23 +128,16 @@ public class QuestionaryValidation : MonoBehaviour
 
         warning.text = "";
 
-        PlayerStats.sport = sport.options[sport.value].text;
+        PlayerInfo.sport = sport.options[sport.value].text;
         IEnumerator<Toggle> toggles = level.ActiveToggles().GetEnumerator();
         toggles.MoveNext();
-        PlayerStats.level = toggles.Current.GetComponentInChildren<Text>().text;
-        PlayerStats.competing_years = int.Parse(competing_years.text);
-        PlayerStats.height = (int) height.value;
-        PlayerStats.weight = (int) weight.value;
-        Debug.Log(PlayerStats.sport);
-        Debug.Log(PlayerStats.level);
-        Debug.Log(PlayerStats.competing_years);
-        Debug.Log(PlayerStats.height);
-        Debug.Log(PlayerStats.weight);
+        PlayerInfo.level = toggles.Current.GetComponentInChildren<Text>().text;
+        PlayerInfo.competing_years = int.Parse(competing_years.text);
+        PlayerInfo.height = (int) height.value;
+        PlayerInfo.weight = (int) weight.value;
 
-
-        // after registering user, go to menu:
+        iOController.RegisterUser();
+        StaticClass.playerId = PlayerInfo.email;
         buttonHandler.ChangeScene(_main_scene);
     }
-
-    //STORE INFORMATION!
 }

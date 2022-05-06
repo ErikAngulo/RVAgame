@@ -118,7 +118,7 @@ public class gameController : MonoBehaviour
     }
 
     void saveData(){
-        int id = StaticClass.playerId;
+        string id = StaticClass.playerId;
         int game_id = 0; //dummy
         string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         NumberFormatInfo nfi = new NumberFormatInfo();
@@ -130,7 +130,7 @@ public class gameController : MonoBehaviour
             for(int i = 0; i < _nLight.Count; i++){
               writer.Write(i.ToString(nfi));  
               writer.Write(",");
-              writer.Write(id.ToString(nfi));  
+              writer.Write(id);  
               writer.Write(",");
               writer.Write(game_id.ToString(nfi));  
               writer.Write(",");
