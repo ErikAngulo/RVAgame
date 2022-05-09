@@ -140,4 +140,18 @@ public class QuestionaryValidation : MonoBehaviour
         StaticClass.playerId = PlayerInfo.email;
         buttonHandler.ChangeScene(_main_scene);
     }
+
+    public void Login(){
+        if(!IsValidEmailAddress(email.text)){
+            warning.text = "Please, enter a valid email address.";
+            return;
+        }
+        if(!Directory.Exists("../Database/"+email.text)){
+            warning.text = "Incorrect credentials. Please, enter an already registered email.";
+            return;
+        }
+        warning.text = "";
+        StaticClass.playerId = email.text;
+        buttonHandler.ChangeScene(_main_scene);
+    }
 }
