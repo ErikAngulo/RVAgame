@@ -24,6 +24,15 @@ public class IOController : MonoBehaviour
         //Dummy IDs
         string id = StaticClass.playerId;
         int game_id = 0;
+        try{
+            string lastLine = System.IO.File.ReadLines("../Database/"+id+"/game1.csv").Last();
+            string lastgame_id = lastLine.Split(',')[1];
+            game_id = Convert.ToInt32(lastgame_id);
+            game_id += 1;
+        }
+        catch{
+            // if conversion or load fails, there is no played game, we mantain game_id=0
+        }
         int balls = scores.Count;
         float time = timeController.GetTotal();
         string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"); 
@@ -73,7 +82,15 @@ public class IOController : MonoBehaviour
         bool movement, float totalTime, List<string> _nLight, List<float> _nTimeToHit, List<float> _nCoordX, List<float> _nCoordY, List<float> _nPoints, List<int> _nBulletsToHit
         ){
         string id = StaticClass.playerId;
-        int game_id = 0; //dummy
+        int game_id = 0;
+        try{
+            string lastLine = System.IO.File.ReadLines("../Database/"+id+"/game2.csv").Last();
+            string lastgame_id = lastLine.Split(',')[1];
+            game_id = Convert.ToInt32(lastgame_id);
+        }
+        catch{
+            // if conversion or load fails, there is no played game, we mantain game_id=0
+        }
         string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
