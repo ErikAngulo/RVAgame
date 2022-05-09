@@ -70,7 +70,7 @@ public class IOController : MonoBehaviour
     }
 
     public void WriteStatistics2(
-        List<string> _nLight, List<float> _nTimeToHit, List<float> _nCoordX, List<float> _nCoordY, List<float> _nPoints, List<int> _nBulletsToHit
+        bool movement, float totalTime, List<string> _nLight, List<float> _nTimeToHit, List<float> _nCoordX, List<float> _nCoordY, List<float> _nPoints, List<int> _nBulletsToHit
         ){
         string id = StaticClass.playerId;
         int game_id = 0; //dummy
@@ -79,14 +79,16 @@ public class IOController : MonoBehaviour
         nfi.NumberDecimalSeparator = ".";
         using (StreamWriter writer = File.AppendText("../Database/"+id+"/game2.csv"))
         {
-            // writer.Write("id,gameId,date,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
-            // writer.Write(System.Environment.NewLine);
             for(int i = 0; i < _nLight.Count; i++){
               writer.Write(id);  
               writer.Write(",");
               writer.Write(game_id.ToString(nfi));  
               writer.Write(",");
               writer.Write(date);  
+              writer.Write(",");
+              writer.Write(movement);  
+              writer.Write(",");
+              writer.Write(totalTime);  
               writer.Write(",");
               writer.Write(i.ToString(nfi));  
               writer.Write(",");
@@ -112,6 +114,20 @@ public class IOController : MonoBehaviour
         {
             sw.WriteLine(PlayerInfo.email+","+PlayerInfo.player_name+","+PlayerInfo.birthday.ToString()+","+PlayerInfo.gender+","+PlayerInfo.laterality+","+PlayerInfo.sport+
             ","+PlayerInfo.level+","+PlayerInfo.competing_years.ToString()+","+PlayerInfo.height.ToString()+","+PlayerInfo.weight.ToString());
+        }
+    }
+
+    public void CreateGameSaveData(){
+        string id = PlayerInfo.email;
+        using (StreamWriter writer = File.AppendText("../Database/"+id+"/game2.csv"))
+        {
+            writer.Write("id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
+            writer.Write(System.Environment.NewLine);
+        }
+        using (StreamWriter sw = File.AppendText("../Database/"+id+"/game1.csv"))
+        {
+            sw.Write("id,gameId,date,instance(ball),time,nºballs,ballColor,score,speed,angleX,angleY,angleZ,reactionTime,decisionTime,throwTime");
+            sw.Write(System.Environment.NewLine);
         }
     }
 }

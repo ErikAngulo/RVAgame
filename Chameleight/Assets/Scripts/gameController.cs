@@ -21,6 +21,7 @@ public class gameController : MonoBehaviour
     public AudioSource soundLight;
     private Light _choosedLight;
     public float playTime;
+    private float _totalTime;
     // Scores
     private float _score = 0;
     //private bool _enabled = false;
@@ -44,6 +45,7 @@ public class gameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _totalTime = playTime;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -82,7 +84,7 @@ public class gameController : MonoBehaviour
       _remainingTime.text = "Time: " + playTime.ToString("F1") + "s";
       if (playTime < 0.0f && !_finished){
         _finished = true;
-        ioController.WriteStatistics2(_nLight, _nTimeToHit, _nCoordX, _nCoordY, _nPoints, _nBulletsToHit);
+        ioController.WriteStatistics2(movement, _totalTime, _nLight, _nTimeToHit, _nCoordX, _nCoordY, _nPoints, _nBulletsToHit);
         getScores();
         GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
       }

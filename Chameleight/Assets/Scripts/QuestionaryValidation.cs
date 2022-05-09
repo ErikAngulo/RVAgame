@@ -137,6 +137,7 @@ public class QuestionaryValidation : MonoBehaviour
         PlayerInfo.weight = (int) weight.value;
 
         iOController.RegisterUser();
+        iOController.CreateGameSaveData();
         StaticClass.playerId = PlayerInfo.email;
         buttonHandler.ChangeScene(_main_scene);
     }
