@@ -16,6 +16,7 @@ public class ButtonHandler : MonoBehaviour
         logOutScenes.Add("WelcomeScene");
         logOutScenes.Add("Initial Questions");
         logOutScenes.Add("Initial Questions 2");
+        logOutScenes.Add("LoginScene");
     }
 
     // Update is called once per frame

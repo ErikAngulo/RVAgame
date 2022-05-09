@@ -69,6 +69,43 @@ public class IOController : MonoBehaviour
         }
     }
 
+    public void WriteStatistics2(
+        List<string> _nLight, List<float> _nTimeToHit, List<float> _nCoordX, List<float> _nCoordY, List<float> _nPoints, List<int> _nBulletsToHit
+        ){
+        string id = StaticClass.playerId;
+        int game_id = 0; //dummy
+        string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        NumberFormatInfo nfi = new NumberFormatInfo();
+        nfi.NumberDecimalSeparator = ".";
+        using (StreamWriter writer = File.AppendText("../Database/"+id+"/game2.csv"))
+        {
+            // writer.Write("id,gameId,date,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
+            // writer.Write(System.Environment.NewLine);
+            for(int i = 0; i < _nLight.Count; i++){
+              writer.Write(id);  
+              writer.Write(",");
+              writer.Write(game_id.ToString(nfi));  
+              writer.Write(",");
+              writer.Write(date);  
+              writer.Write(",");
+              writer.Write(i.ToString(nfi));  
+              writer.Write(",");
+              writer.Write(_nLight[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nTimeToHit[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nCoordX[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nCoordY[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nPoints[i].ToString(nfi));
+              writer.Write(",");
+              writer.Write(_nBulletsToHit[i].ToString(nfi));
+              writer.Write(System.Environment.NewLine);
+            }
+        }
+    }
+
     public void RegisterUser(){
         Directory.CreateDirectory("../Database/"+PlayerInfo.email);
         using (StreamWriter sw = File.AppendText("../Database/"+PlayerInfo.email+"/user_info.csv"))

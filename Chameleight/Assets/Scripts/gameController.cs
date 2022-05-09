@@ -9,6 +9,7 @@ using System.Linq;
 
 public class gameController : MonoBehaviour
 {
+    public IOController ioController;
     private TextMeshProUGUI _scoreText;
     private TextMeshProUGUI _latestHitText;
     private TextMeshProUGUI _remainingTime;
@@ -81,7 +82,7 @@ public class gameController : MonoBehaviour
       _remainingTime.text = "Time: " + playTime.ToString("F1") + "s";
       if (playTime < 0.0f && !_finished){
         _finished = true;
-        saveData();
+        ioController.WriteStatistics2(_nLight, _nTimeToHit, _nCoordX, _nCoordY, _nPoints, _nBulletsToHit);
         getScores();
         GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
       }
@@ -117,44 +118,10 @@ public class gameController : MonoBehaviour
       _nBulletsToHit.Add(bulletsUsed);
     }
 
-    void saveData(){
-        string id = StaticClass.playerId;
-        int game_id = 0; //dummy
-        string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
-        NumberFormatInfo nfi = new NumberFormatInfo();
-        nfi.NumberDecimalSeparator = ".";
-        using (StreamWriter writer = File.AppendText("../Database/shoot_temp_"+date+".csv"))
-        {
-            // writer.Write("Instance,id,gameId,date,LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
-            // writer.Write(System.Environment.NewLine);
-            for(int i = 0; i < _nLight.Count; i++){
-              writer.Write(i.ToString(nfi));  
-              writer.Write(",");
-              writer.Write(id);  
-              writer.Write(",");
-              writer.Write(game_id.ToString(nfi));  
-              writer.Write(",");
-              writer.Write(date);  
-              writer.Write(",");
-              writer.Write(_nLight[i].ToString(nfi));
-              writer.Write(",");
-              writer.Write(_nTimeToHit[i].ToString(nfi));
-              writer.Write(",");
-              writer.Write(_nCoordX[i].ToString(nfi));
-              writer.Write(",");
-              writer.Write(_nCoordY[i].ToString(nfi));
-              writer.Write(",");
-              writer.Write(_nPoints[i].ToString(nfi));
-              writer.Write(",");
-              writer.Write(_nBulletsToHit[i].ToString(nfi));
-              writer.Write(System.Environment.NewLine);
-            }
-        }
-    }
 
     void getScores(){
       string totalScore = "Total score: " + _score.ToString("F2");
-      string totalLights = "Succeeded hits: " + _nLight.Count.ToString("F2");
+      string totalLights = "Succeeded hits: " + _nLight.Count.ToString("F0");
       string meanPunct = "Mean of points scored: " + _nPoints.Average().ToString("F2");
       string maxPunct = "Best shot points: " + _nPoints.Max().ToString("F2");
       string minPunct = "Worst shot points: " + _nPoints.Min().ToString("F2");
