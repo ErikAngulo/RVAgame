@@ -147,12 +147,21 @@ public class QuestionaryValidation : MonoBehaviour
             warning.text = "Please, enter a valid email address.";
             return;
         }
-        if(!Directory.Exists("../Database/"+email.text)){
+        string[] path = {"Database", email.text};
+        if(!Directory.Exists(Path.Combine(path))){
             warning.text = "Incorrect credentials. Please, enter an already registered email.";
             return;
         }
         warning.text = "";
         StaticClass.playerId = email.text;
         buttonHandler.ChangeScene(_main_scene);
+    }
+
+    public void EnterAsDemoUser(){
+        PlayerInfo.email = "0";
+        iOController.createDemoFolder();
+        StaticClass.playerId = PlayerInfo.email;
+        buttonHandler.ChangeScene(_main_scene);
+        
     }
 }

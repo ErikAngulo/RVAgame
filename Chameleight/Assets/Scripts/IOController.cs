@@ -24,8 +24,9 @@ public class IOController : MonoBehaviour
         //Dummy IDs
         string id = StaticClass.playerId;
         int game_id = 0;
+        string[] path1 = {"Database", id, "game1.csv"};
         try{
-            string lastLine = System.IO.File.ReadLines("../Database/"+id+"/game1.csv").Last();
+            string lastLine = System.IO.File.ReadLines(Path.Combine(path1)).Last();
             string lastgame_id = lastLine.Split(',')[1];
             game_id = Convert.ToInt32(lastgame_id);
             game_id += 1;
@@ -67,7 +68,7 @@ public class IOController : MonoBehaviour
 
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
-        using (StreamWriter sw = File.AppendText("../Database/"+id+"/game1.csv"))
+        using (StreamWriter sw = File.AppendText(Path.Combine(path1)))
         {
             for(int i = 0; i < scores.Count; i++){
                 sw.WriteLine(id+","+game_id.ToString()+","+date+","+i.ToString()+","+time.ToString(nfi)+","+balls.ToString()+","+colors.ElementAt(i).Item2.ToString()+","
@@ -83,8 +84,9 @@ public class IOController : MonoBehaviour
         ){
         string id = StaticClass.playerId;
         int game_id = 0;
+        string[] path2 = {"Database", id, "game2.csv"};
         try{
-            string lastLine = System.IO.File.ReadLines("../Database/"+id+"/game2.csv").Last();
+            string lastLine = System.IO.File.ReadLines(Path.Combine(path2)).Last();
             string lastgame_id = lastLine.Split(',')[1];
             game_id = Convert.ToInt32(lastgame_id);
         }
@@ -94,7 +96,7 @@ public class IOController : MonoBehaviour
         string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
-        using (StreamWriter writer = File.AppendText("../Database/"+id+"/game2.csv"))
+        using (StreamWriter writer = File.AppendText(Path.Combine(path2)))
         {
             for(int i = 0; i < _nLight.Count; i++){
               writer.Write(id);  
@@ -126,22 +128,33 @@ public class IOController : MonoBehaviour
     }
 
     public void RegisterUser(){
-        Directory.CreateDirectory("../Database/"+PlayerInfo.email);
-        using (StreamWriter sw = File.AppendText("../Database/"+PlayerInfo.email+"/user_info.csv"))
+        string[] path = {"Database", PlayerInfo.email};
+        Directory.CreateDirectory(Path.Combine(path));
+        using (StreamWriter sw = File.AppendText(Path.Combine(path)))
         {
             sw.WriteLine(PlayerInfo.email+","+PlayerInfo.player_name+","+PlayerInfo.birthday.ToString()+","+PlayerInfo.gender+","+PlayerInfo.laterality+","+PlayerInfo.sport+
             ","+PlayerInfo.level+","+PlayerInfo.competing_years.ToString()+","+PlayerInfo.height.ToString()+","+PlayerInfo.weight.ToString());
         }
     }
 
+    public void createDemoFolder(){
+        string id = PlayerInfo.email;
+        string[] path = {"Database", id};
+        if(!Directory.Exists(Path.Combine(path))){
+            Directory.CreateDirectory(Path.Combine(path));
+            CreateGameSaveData();
+        }
+    }
     public void CreateGameSaveData(){
         string id = PlayerInfo.email;
-        using (StreamWriter writer = File.AppendText("../Database/"+id+"/game2.csv"))
+        string[] path1 = {"Database", id, "game1.csv"};
+        string[] path2 = {"Database", id, "game2.csv"};
+        using (StreamWriter writer = File.AppendText(Path.Combine(path2)))
         {
             writer.Write("id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded");
             writer.Write(System.Environment.NewLine);
         }
-        using (StreamWriter sw = File.AppendText("../Database/"+id+"/game1.csv"))
+        using (StreamWriter sw = File.AppendText(Path.Combine(path1)))
         {
             sw.Write("id,gameId,date,instance(ball),time,nºballs,ballColor,score,speed,angleX,angleY,angleZ,reactionTime,decisionTime,throwTime");
             sw.Write(System.Environment.NewLine);
