@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: b6f97118f55965244b12eedb182de584
+  - enabled: 1
     path: Assets/Scenes/WelcomeScene.unity
     guid: efefbcd6db3963580b93849b9dfded5d
   - enabled: 1
@@ -17,9 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CreditsScene.unity
     guid: ab31298d3b31bd4069574e3926fb0aac
-  - enabled: 1
-    path: Assets/Scenes/MainScene.unity
-    guid: b6f97118f55965244b12eedb182de584
   - enabled: 1
     path: Assets/Scenes/ConfigGameScene.unity
     guid: f03f01ed18e584f54b52c074cbf4eaf9
@@ -42,6 +42,8 @@ EditorBuildSettings:
     path: Assets/Scenes/InstructionsScene.unity
     guid: e47c19e5507b4e73d838a9fb1333688e
   m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a41d6671ac7167a35a4f8b4df661ef19, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 063a0da6f7636e6199d8d3d4ffc603a2, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: 51fee3ccf87f7507a91efd88e56ef78c, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: ebdc90d6082769fd7850f0f890113fc2, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 234f9dac38d1f212398d3615b7ce7627, type: 2}
