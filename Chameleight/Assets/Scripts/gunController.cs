@@ -12,25 +12,19 @@ public class gunController : MonoBehaviour
     private Vector3 _angles = Vector3.zero;
     private float _max_angle = 60.0f;
     private int _dartsUsed = 0;
+    private bool _fired = false;
     
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetKeyDown(KeyCode.Space) | Input.GetMouseButtonDown(1)){
+        if(OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) > 0.5f && !_fired){
             FireDart();
+            _fired = true;
         }
-        if(Input.GetMouseButton(0)){
-            Cursor.lockState = CursorLockMode.Locked;
-            float rotateHorizontal = Input.GetAxis("Mouse X");
-            float rotateVertical = Input.GetAxis("Mouse Y");
-            _angles.y += rotateHorizontal * sensitivity;
-            _angles.y = Mathf.Clamp(_angles.y,-_max_angle,_max_angle);
-            _angles.x -= rotateVertical * sensitivity;
-            _angles.x = Mathf.Clamp(_angles.x,-_max_angle,_max_angle);
-
-            gameObject.transform.rotation = Quaternion.Euler(_angles);
-        }else{
+        else if (OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) < 0.5f){
+            _fired = false;
+        }
+        else{
             Cursor.lockState = CursorLockMode.None;
         }
     }
