@@ -135,9 +135,7 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 0.1
-  preloadedAssets:
-  - {fileID: 5377485926605657844, guid: 234f9dac38d1f212398d3615b7ce7627, type: 2}
-  - {fileID: 11400000, guid: a41d6671ac7167a35a4f8b4df661ef19, type: 2}
+  preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
