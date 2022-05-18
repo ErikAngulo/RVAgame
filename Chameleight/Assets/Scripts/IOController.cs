@@ -131,8 +131,9 @@ public class IOController : MonoBehaviour
 
     public void RegisterUser(){
         string[] path = {"Database", PlayerInfo.email};
+        string[] infopath = {"Database", PlayerInfo.email, "user_info.csv"};
         Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, Path.Combine(path)));
-        using (StreamWriter sw = File.AppendText(Path.Combine(Application.persistentDataPath, Path.Combine(path))))
+        using (StreamWriter sw = File.AppendText(Path.Combine(Application.persistentDataPath, Path.Combine(infopath))))
         {
             sw.WriteLine(PlayerInfo.email+","+PlayerInfo.player_name+","+PlayerInfo.birthday.ToString()+","+PlayerInfo.gender+","+PlayerInfo.laterality+","+PlayerInfo.sport+
             ","+PlayerInfo.level+","+PlayerInfo.competing_years.ToString()+","+PlayerInfo.height.ToString()+","+PlayerInfo.weight.ToString());

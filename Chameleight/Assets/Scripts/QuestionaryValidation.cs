@@ -148,7 +148,7 @@ public class QuestionaryValidation : MonoBehaviour
             return;
         }
         string[] path = {"Database", email.text};
-        if(!Directory.Exists(Path.Combine(path))){
+        if(!Directory.Exists(Path.Combine(Application.persistentDataPath, Path.Combine(path)))){
             warning.text = "Incorrect credentials. Please, enter an already registered email.";
             return;
         }
