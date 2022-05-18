@@ -32,9 +32,8 @@ public class HoldController : MonoBehaviour
     private string _scoreScene = "GameOverScene";
 
     public void Start(){
-        //CHANGE NUMBER OF BALLS!
-        totalLimit = 50;
         _limit = totalLimit-1;
+        ballsText.text = "Balls: " + _limit;
         Copy(initialBall.transform);
     }
 

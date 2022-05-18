@@ -27,24 +27,19 @@ public class ConfigFormHandler : MonoBehaviour
         Dropdown dropdown2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").Find("Dropdown2").GetComponent<Dropdown>();
 
         if (StaticClass.SelectedGameScene.Equals(_ball_game)){
-            text1.text = "Ball limit";
-            List<string> list1 = new List<string> { "5", "10", "15" };
+            text1.text = "Game type (balls)";
+            List<string> list1 = new List<string> { "QuickPlay (10)", "Normal (20)", "Marathon (30)" };
             foreach (string option in list1)
             {
                 dropdown1.options.Add(new Dropdown.OptionData(option));
             }
             dropdown1.value = 0;
 
-            text2.text = "Ball speed";
-            List<string> list2 = new List<string> { "8", "14", "20" };
-            foreach (string option in list2)
-            {
-                dropdown2.options.Add(new Dropdown.OptionData(option));
-            }
-            dropdown2.value = 0;
+            text2.gameObject.SetActive(false);
+            dropdown2.gameObject.SetActive(false);
         }
         else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
-            text1.text = "Movement";
+            text1.text = "Target movement";
             List<string> list1 = new List<string> { "Yes", "No" };
             foreach (string option in list1)
             {
@@ -52,8 +47,8 @@ public class ConfigFormHandler : MonoBehaviour
             }
             dropdown1.value = 0;
 
-            text2.text = "Time limit";
-            List<string> list2 = new List<string> { "60", "90", "120" };
+            text2.text = "Game type (time)";
+            List<string> list2 = new List<string> { "QuickPlay (60)", "Normal (90)", "Marathon (120)" };
             foreach (string option in list2)
             {
                 dropdown2.options.Add(new Dropdown.OptionData(option));
@@ -76,12 +71,13 @@ public class ConfigFormHandler : MonoBehaviour
         Dropdown dropdown1 = _myCanvas.GetComponent<Transform>().Find("Input1Text").Find("Dropdown1").GetComponent<Dropdown>();
         Dropdown dropdown2 = _myCanvas.GetComponent<Transform>().Find("Input2Text").Find("Dropdown2").GetComponent<Dropdown>();
 
+        List<int> list1 = new List<int> { 10, 20, 30 };
+        List<int> list2 = new List<int> { 60, 90, 120 };
         if (StaticClass.SelectedGameScene.Equals(_ball_game)){
-            StaticClass.BallLimit = int.Parse(dropdown1.options[dropdown1.value].text);
-            StaticClass.BallSpeed = float.Parse(dropdown2.options[dropdown2.value].text);
+            StaticClass.BallLimit = list1[dropdown1.value];
         }
         else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
-            StaticClass.Time = float.Parse(dropdown2.options[dropdown2.value].text);;
+            StaticClass.Time = list2[dropdown2.value];
             if (dropdown1.value == 0){
                 StaticClass.TargetMovement = true;
             }
