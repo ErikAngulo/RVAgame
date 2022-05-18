@@ -9,6 +9,9 @@ TagManager:
   - Ball
   - Ball_throw
   - Panel
+  - Dart
+  - BlueLight
+  - OrangeLight
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - UI
   - Limit
   - Post
-  - 
-  - 
+  - DartColider
+  - PlayerFloorColider
   - 
   - 
   - 
