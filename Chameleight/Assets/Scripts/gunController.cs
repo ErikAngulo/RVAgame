@@ -10,18 +10,24 @@ public class gunController : MonoBehaviour
     public AudioSource shootSound;
 
     private Vector3 _angles = Vector3.zero;
-    private float _max_angle = 60.0f;
     private int _dartsUsed = 0;
     private bool _fired = false;
+    private float _triggerValue = 0.0f;
     
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) > 0.5f && !_fired){
+        if (StaticClass.Controller.Equals("Right")){
+            _triggerValue = OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger);
+        }else{
+            _triggerValue = OVRInput.Get(OVRInput.RawAxis1D.LIndexTrigger);
+        }
+
+        if(_triggerValue > 0.5f && !_fired){
             FireDart();
             _fired = true;
         }
-        else if (OVRInput.Get(OVRInput.RawAxis1D.RIndexTrigger) < 0.5f){
+        else if (_triggerValue < 0.5f){
             _fired = false;
         }
         else{

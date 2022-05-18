@@ -53,6 +53,12 @@ public class gameController : MonoBehaviour
         _latestHitText = GameObject.Find("LatestHitText").GetComponent<TextMeshProUGUI>();
         _remainingTime = GameObject.Find("RemainingTimeText").GetComponent<TextMeshProUGUI>();
 
+        if (StaticClass.Controller.Equals("Left")){ //move from right to left controller
+          GameObject gun = GameObject.Find("Gun").gameObject;
+          GameObject _leftController = GameObject.Find("LeftHandAnchor").gameObject;
+          gun.transform.SetParent(_leftController.transform, true);
+        }
+
         _optionLight.Add(blueLight);
         _optionLight.Add(orangeLight);
         int index = UnityEngine.Random.Range(0, _optionLight.Count);
