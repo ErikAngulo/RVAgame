@@ -2,91 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Oculus.Interaction;
+using Oculus.Interaction.HandPosing;
 
 public class HoldController : MonoBehaviour
 {
-    public Camera cam;
     public TimeController timeController;
-    public CameraController cameraController;
     public ThrowStatisticController throwStatisticController;
+    public GameObject rightHandAnchor;
+    public GameObject leftHandAnchor;
     public IOController ioController;
-    public Transform guide;
     public float ballSpeed = 20.0f;
     public float destroyTime = 1.0f;
     public int totalLimit = 10;
     public TextMeshProUGUI ballsText;
+    public GameObject initialBall;
+    public GameObject forward;
+    public GameObject prefab;
 
     private int _limit = 0;
+    private int _collisioned = 0;
     private int _number = 0;
     private GameObject _ball;
-    private bool _holdable = true;
     private Vector3 _position;
     private Quaternion _rotation;
     private Vector3 _localScale;
-    private bool _end = false;
+    private string hand;
 
     private string _scoreScene = "GameOverScene";
 
-    void Start(){
-        if(totalLimit>0){
-            _limit = totalLimit;
-            ballsText.text = "Balls: " + _limit;
-        }else{
-            ballsText.enabled = false;
-        }
+    public void Start(){
+        //CHANGE NUMBER OF BALLS!
+        totalLimit = 50;
+        _limit = totalLimit-1;
+        Copy(initialBall.transform);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(!_end){
-            if(!_holdable && Input.GetMouseButtonDown(1)){
-                Throw();
-            }else if(!_holdable && (totalLimit <= 0 || _limit > 0)){
-                _ball.transform.position = guide.position;
-            }
-        }
-    }
-
-    public void EndGame(){
-        _end = true;
-    }
-
-    public void Try(GameObject go){
-        if(_holdable){
-            Pickup(go);
-        }
+    public void SetHand(string h){
+        hand = h;
     }
 
     public void Limit(){
-        if(totalLimit > 0 &&_limit<=0){
+        _collisioned = _collisioned + 1;
+        Debug.Log(_collisioned);
+        if(totalLimit > 0 && _collisioned >= totalLimit){
             timeController.ResultsTime();
-            cameraController.EndGame();
             ioController.WriteStatistics1();
             GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
         }
     }
 
-    private void Pickup(GameObject go)
+    public void Pickup(GameObject go)
      {
             _ball = go;
-            //We set the object parent to our guide empty object.
-            _ball.transform.SetParent(guide);
             
             _ball.GetComponent<CollisionController>().SetNumber(_number);
+            _ball.GetComponent<Rigidbody>().useGravity = true;
+
             _number += 1;
-    
-            //Set gravity to false while holding it
-            _ball.GetComponent<Rigidbody>().useGravity = false;
-            _ball.GetComponent<Collider>().enabled = false;
-            Copy(_ball.transform);
-    
-            //we apply the same rotation our main object (Camera) has.
-            _ball.transform.localRotation = transform.rotation;
-            //We re-position the ball on our guide object 
-            _ball.transform.position = guide.position;
-    
-            _holdable = false;
 
             timeController.UpdateTime();
      }
@@ -97,37 +70,32 @@ public class HoldController : MonoBehaviour
          _localScale = t.localScale;
      }
 
-     private void Throw(){
-        GameObject newBall = Instantiate(_ball);
-        newBall.transform.position = _position;
-        newBall.transform.rotation = _rotation;
-        newBall.transform.localScale = _localScale;
-        newBall.GetComponent<Rigidbody>().useGravity = true;
-        newBall.GetComponent<Collider>().enabled = true;
-        _ball.GetComponent<CollisionController>().StartTime();
-        _ball.GetComponent<Rigidbody>().useGravity = true;
-        _ball.GetComponent<Rigidbody>().isKinematic = false;
-        _ball.GetComponent<Collider>().enabled = true;
-        _ball.transform.position = cam.transform.position;
-        _ball.GetComponent<Rigidbody>().velocity = ballSpeed*cam.transform.forward;
-        Debug.Log(ballSpeed);
-        Debug.Log(cam.transform.forward.ToString());
-        _ball.tag = "Ball_throw";
-        guide.GetChild(0).parent = null;
-        timeController.UpdateTime();
-        throwStatisticController.AddSpeed(ballSpeed,_number);
-        throwStatisticController.AddAngle(cam.transform.forward,_number);
-        if(totalLimit>0){
-            _limit -=1;
+     public void Throw(){
+        if((totalLimit==0 ||_limit>0) && _ball.tag != "Ball_throw"){
+            if(totalLimit>0){_limit -=1;}
+            GameObject newBall = Instantiate(prefab);
+            newBall.GetComponent<CollisionController>().timeController = _ball.GetComponent<CollisionController>().timeController;
+            newBall.GetComponent<CollisionController>().scoreController = _ball.GetComponent<CollisionController>().scoreController;
+            newBall.GetComponent<CollisionController>().buttonController = _ball.GetComponent<CollisionController>().buttonController;
+            newBall.GetComponent<CollisionController>().holdController = _ball.GetComponent<CollisionController>().holdController;
+            newBall.GetComponent<CustomTransformer>().holdController = _ball.GetComponent<CustomTransformer>().holdController;
+            newBall.transform.position = _position;
+            newBall.transform.rotation = _rotation;
+            newBall.transform.localScale = _localScale;
             ballsText.text = "Balls: " + _limit;
-            if(_limit>0){
-                _holdable = true;
-            }else{
-                EndGame();
-            }
-        }else{
-            _holdable = true;
         }
+        _ball.GetComponent<GrabInteractable>().enabled = false;
+        _ball.transform.GetChild(1).gameObject.GetComponent<HandGrabInteractable>().enabled = false;
+        _ball.GetComponent<CollisionController>().StartTime();
+        if(hand=="right"){
+            _ball.GetComponent<Rigidbody>().velocity = rightHandAnchor.GetComponent<VelocityController>().GetSpeed();
+        }else if(hand=="left"){
+            _ball.GetComponent<Rigidbody>().velocity = leftHandAnchor.GetComponent<VelocityController>().GetSpeed();
+        }
+        _ball.tag = "Ball_throw";
+        timeController.UpdateTime();
+        throwStatisticController.AddSpeed(_ball.GetComponent<Rigidbody>().velocity.magnitude,_number);
+        throwStatisticController.AddAngle(_ball.GetComponent<Rigidbody>().velocity.normalized,_number);
         StartCoroutine(DestroyTime(destroyTime,_ball));
      }
 

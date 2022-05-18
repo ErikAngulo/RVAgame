@@ -5,11 +5,7 @@ using TMPro;
 
 public class TimeController : MonoBehaviour
 {
-    public TextMeshProUGUI reactionTimeText;
-    public TextMeshProUGUI decisionTimeText;
     public TextMeshProUGUI generalTimeText;
-    public TextMeshProUGUI resultsText;
-    public CameraController cameraController;
     public HoldController holdController;
     public IOController ioController;
     public ScoreController scoreController;
@@ -40,11 +36,9 @@ public class TimeController : MonoBehaviour
         float act_time;
         if(_timeableReaction){
             act_time = Time.time-_timeReaction;
-            reactionTimeText.text = "Reaction: " + act_time.ToString("0.0") + "s";
         }
         if(_timeableDecision){
             act_time = Time.time-_timeDecision;
-            decisionTimeText.text = "Decision: " + act_time.ToString("0.0") + "s";
         }
         if(_timeable){
             if(totalTime>0.0f){
@@ -55,8 +49,6 @@ public class TimeController : MonoBehaviour
             generalTimeText.text = "Time: " + act_time.ToString("0.0") + "s";
             if(totalTime>0.0f && act_time<=0.0f){
                 ResultsTime();
-                cameraController.EndGame();
-                holdController.EndGame();
                 GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
             }
         }
@@ -93,7 +85,6 @@ public class TimeController : MonoBehaviour
             totalThrow /= _timesThrowList.Count;
         }
         string throwText = "Mean Throw time: " + totalThrow.ToString("0.0") + "s";
-        resultsText.text = reactionText + decisionText + throwText;
 
         StaticClass.scoreText = reactionText +
                               System.Environment.NewLine + 
@@ -115,14 +106,12 @@ public class TimeController : MonoBehaviour
             _timesReactionList.Add((phase,Time.time-_timeReaction));
             _timeableReaction = false;
             _timeReaction = 0.0f;
-            reactionTimeText.text = "Reaction: 0.0s";
             _timeableDecision = true;
             _timeDecision = Time.time;
         }else if(_timeableDecision){
             _timesDecisionList.Add((phase,Time.time-_timeDecision));
             _timeableDecision = false;
             _timeDecision = 0.0f;
-            decisionTimeText.text = "Decision: 0.0s";
             _timeableReaction = true;
             _timeReaction= Time.time;
             phase += 1;
