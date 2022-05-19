@@ -240,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464157, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: ConfigGameScene
+      value: ControllerInstructScene
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464157, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &244999702
 Canvas:
   m_ObjectHideFlags: 0
@@ -688,7 +688,6 @@ MonoBehaviour:
   holdController: {fileID: 0}
   buttonController: {fileID: 0}
   gamecontroller: {fileID: 0}
-  text: {fileID: 1335675989}
 --- !u!4 &1122645308
 Transform:
   m_ObjectHideFlags: 0
@@ -775,8 +774,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 8
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
