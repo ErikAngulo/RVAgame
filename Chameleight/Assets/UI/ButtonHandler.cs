@@ -28,7 +28,7 @@ public class ButtonHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q)){
+        if (OVRInput.GetDown(OVRInput.Button.Three)){ // X button
             if (SceneManager.GetActiveScene().name.Equals(_escena_principal)){
                 ExitGame();
             }
@@ -43,30 +43,6 @@ public class ButtonHandler : MonoBehaviour
                 SceneManager.LoadScene(_escena_principal);
             }
         }
-        // if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger,OVRInput.Controller.RTouch))
-        // {
-        // SetActiveController(OVRInput.Controller.RTouch);
-        // }
-
-        // if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
-        // {
-        // SetActiveController(OVRInput.Controller.LTouch);
-        // }
-    }
-    void SetActiveController(OVRInput.Controller c)
-    {
-        Transform t;
-        if(c == OVRInput.Controller.LTouch)
-        {
-            Debug.Log("Soy izquierda");
-            t = _cameraRig.leftHandAnchor;
-        }
-        else
-        {
-            Debug.Log("Soy derecha");
-            t = _cameraRig.rightHandAnchor;
-        }
-        _inputModule.rayTransform = t;
     }
     public void ChangeScene (string scene)
     {

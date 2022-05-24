@@ -93,6 +93,8 @@ public class ReadConfig : MonoBehaviour
                 "Playing with your hand requires leaving the controller on a table at the start of the game."
                 + System.Environment.NewLine +
                 "Check the video on the side for an execution example."
+                + System.Environment.NewLine +
+                "You can exit the game any time pressing X button (left controller)."
                 + System.Environment.NewLine;
 
                 _leftText.text = "Using hands";
@@ -112,6 +114,8 @@ public class ReadConfig : MonoBehaviour
                 "Press the Index trigger to shoot bullets."
                 + System.Environment.NewLine +
                 "Check the video on the side for an execution example."
+                + System.Environment.NewLine +
+                "You can exit the game any time pressing X button (left controller)."
                 + System.Environment.NewLine;
 
                 _rightText.text = "Using controller";
