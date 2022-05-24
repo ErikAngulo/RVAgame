@@ -18,6 +18,7 @@ public static class PlayerInfo
     public static string sport { get; set; }
     public static string level { get; set; }
     public static int competing_years { get; set; }
+    public static int practice_hours { get; set; }
     public static int height { get; set; }
     public static int weight { get; set; }
 }
@@ -30,6 +31,7 @@ public class QuestionaryValidation : MonoBehaviour
     public TMP_InputField day;
     public TMP_InputField year;
     public TMP_InputField competing_years;
+    public TMP_InputField practice_hours;
     public TMP_Dropdown month;
     public TMP_Dropdown sport;
     public ToggleGroup gender;
@@ -105,6 +107,11 @@ public class QuestionaryValidation : MonoBehaviour
             return;
         }
 
+        if(practice_hours.text.Length == 0){
+            warning.text = "Please, fill the required fields.";
+            return;
+        }
+
         if((int) height.value == 0){
             warning.text = "Height value can't be 0.";
             return;
@@ -133,6 +140,7 @@ public class QuestionaryValidation : MonoBehaviour
         toggles.MoveNext();
         PlayerInfo.level = toggles.Current.GetComponentInChildren<Text>().text;
         PlayerInfo.competing_years = int.Parse(competing_years.text);
+        PlayerInfo.practice_hours = int.Parse(practice_hours.text);
         PlayerInfo.height = (int) height.value;
         PlayerInfo.weight = (int) weight.value;
 

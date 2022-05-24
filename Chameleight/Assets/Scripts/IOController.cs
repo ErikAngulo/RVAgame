@@ -135,8 +135,9 @@ public class IOController : MonoBehaviour
         Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, Path.Combine(path)));
         using (StreamWriter sw = File.AppendText(Path.Combine(Application.persistentDataPath, Path.Combine(infopath))))
         {
+            sw.WriteLine("email,name,birthday,gender,laterality,sport,level,competing_years,practice_hours,height,weight");
             sw.WriteLine(PlayerInfo.email+","+PlayerInfo.player_name+","+PlayerInfo.birthday.ToString()+","+PlayerInfo.gender+","+PlayerInfo.laterality+","+PlayerInfo.sport+
-            ","+PlayerInfo.level+","+PlayerInfo.competing_years.ToString()+","+PlayerInfo.height.ToString()+","+PlayerInfo.weight.ToString());
+            ","+PlayerInfo.level+","+PlayerInfo.competing_years.ToString()+","+PlayerInfo.practice_hours.ToString()+","+PlayerInfo.height.ToString()+","+PlayerInfo.weight.ToString());
         }
     }
 
