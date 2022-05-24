@@ -2224,6 +2224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeController: {fileID: 1909136815}
   holdController: {fileID: 1263552773}
+  velocityLeft: {fileID: 586031155}
+  velocityRight: {fileID: 1866450571}
   buttonController: {fileID: 1950538386}
   gamecontroller: {fileID: 0}
 --- !u!4 &1196414709

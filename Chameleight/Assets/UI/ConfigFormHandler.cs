@@ -38,8 +38,14 @@ public class ConfigFormHandler : MonoBehaviour
             }
             dropdown1.value = 0;
 
-            text2.gameObject.SetActive(false);
-            dropdown2.gameObject.SetActive(false);
+            text2.text = "Ball resistance";
+            List<string> list2 = new List<string> { "Low", "Medium", "High" };
+            foreach (string option in list2)
+            {
+                dropdown2.options.Add(new Dropdown.OptionData(option));
+            }
+            dropdown2.value = 0;
+
             text3.gameObject.SetActive(false);
             dropdown3.gameObject.SetActive(false);
         }
@@ -88,8 +94,10 @@ public class ConfigFormHandler : MonoBehaviour
 
         List<int> list1 = new List<int> { 10, 20, 30 };
         List<int> list2 = new List<int> { 60, 90, 120 };
+        List<float> list3 = new List<float> { 3.5f, 2.5f, 1.5f };
         if (StaticClass.SelectedGameScene.Equals(_ball_game)){
             StaticClass.BallLimit = list1[dropdown1.value];
+            StaticClass.BallFactor = list3[dropdown2.value];
         }
         else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
             StaticClass.Time = list2[dropdown2.value];

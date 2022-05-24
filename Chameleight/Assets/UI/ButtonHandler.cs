@@ -28,7 +28,8 @@ public class ButtonHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.Three)){ // X button
+        if ((OVRInput.GetActiveController() == OVRInput.Controller.Touch || OVRInput.GetActiveController() == OVRInput.Controller.LTouch 
+        || OVRInput.GetActiveController() == OVRInput.Controller.RTouch) && OVRInput.GetDown(OVRInput.Button.Three)){ // X button
             if (SceneManager.GetActiveScene().name.Equals(_escena_principal)){
                 ExitGame();
             }
