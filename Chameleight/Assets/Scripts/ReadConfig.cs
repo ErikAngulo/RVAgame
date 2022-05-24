@@ -42,38 +42,38 @@ public class ReadConfig : MonoBehaviour
             _text = GameObject.Find("InstructionText").GetComponent<TextMeshProUGUI>();
             if (StaticClass.SelectedGameScene.Equals(_ball_game)){
                 _text.text = "" +
-                "A red or blue ball will appear at the floor."
+                "Ball game objective is to throw balls to specific color area."
                 + System.Environment.NewLine +
-                "You must throw it to the button of the same color as the ball."
+                "There are two possible ball colors, red and blue."
                 + System.Environment.NewLine +
-                "Once throwed, another ball will appear to throw."
+                "When blue ball appears, throw the ball to the blue square area located at the panel."
                 + System.Environment.NewLine +
-                "This steps must be followed until all balls are used."
+                "When red ball appears, throw the ball to the red square area located at the panel."
                 + System.Environment.NewLine +
-                "In the configuration screen, you can select how many balls will be available to throw."
+                "You have a single opportunity per ball to hit the target."
                 + System.Environment.NewLine +
-                "When the game finishes, game statistics will appear and you will have the option to play again if wished."
+                "After each throw, a new ball will appear in front of you."
+                + System.Environment.NewLine +
+                "Test ends after throwing the last ball."
                 + System.Environment.NewLine;
             }
             else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
                 _text.text = "" +
-                "A gun will appear, which you will use to shoot."
+                "Shooting game objective is to shoot at the center of a target."
                 + System.Environment.NewLine +
-                "You must shoot to the target that has a light on."
+                "There are two light bulbs on top of two targets. One bulb is blue, and the other is orange."
                 + System.Environment.NewLine +
-                "You have unlimited shoots to hit it."
+                "When blue bulb lights  turns on, shoot to the target located below."
                 + System.Environment.NewLine +
-                "Once hit, the bulb will turn off and the points scored will be shown."
+                "When the orange light turns on, shoot to the target located below."
                 + System.Environment.NewLine +
-                "After a period of time, a bulb of a target will turn on and you must repeat the process."
+                "The light bulb remains on until a bullet lands on the correct target.  "
                 + System.Environment.NewLine +
-                "In the configuration screen, you can select how many time you want to play."
+                "After that, a new light bulb turns on."
                 + System.Environment.NewLine +
-                "Besides, a 'movement' option can be selected with 'Yes'."
+                "Highest score is at the center of the target, whereas the lowest at the target edge."
                 + System.Environment.NewLine +
-                "This means that the targets will move after it is hit."
-                + System.Environment.NewLine +
-                "When the game finishes, game statistics will appear and you will have the option to play again if wished."
+                "You have a time limit to score  as many points as possible."
                 + System.Environment.NewLine;
             }
         }
@@ -86,15 +86,13 @@ public class ReadConfig : MonoBehaviour
 
             if (StaticClass.SelectedGameScene.Equals(_ball_game)){
                 _text.text = "" +
-                "You can play with both controllers."
+                "There are two options to perform the test: Throw with a controller or you hand."
                 + System.Environment.NewLine +
-                "Pick the ball with hand trigger."
+                "Playing with the controller requires to pick the ball with the hand trigger."
                 + System.Environment.NewLine +
-                "You can also play using your hands."
+                "Playing with your hand requires leaving the controller on a table at the start of the game."
                 + System.Environment.NewLine +
-                "To do so, leave the controllers in a table when the game starts."
-                + System.Environment.NewLine +
-                "Check the videos next to this text to know the gestures to throw the ball."
+                "Check the video on the side for an execution example."
                 + System.Environment.NewLine;
 
                 _leftText.text = "Using hands";
@@ -105,13 +103,15 @@ public class ReadConfig : MonoBehaviour
             }
             else if (StaticClass.SelectedGameScene.Equals(_shooting_game)){
                 _text.text = "" +
-                "You will play with the controller you select in the next screen."
+                "You have a controller to perform the test."
                 + System.Environment.NewLine +
-                "You can move in the platform with the joystick of the left controller."
+                "In the next scene, you can select the right or left controller."
                 + System.Environment.NewLine +
-                "Move the controller to move the gun."
+                "The controller represents the gun and its movement."
                 + System.Environment.NewLine +
-                "When pressing index trigger you will shoot the gun."
+                "Press the Index trigger to shoot bullets."
+                + System.Environment.NewLine +
+                "Check the video on the side for an execution example."
                 + System.Environment.NewLine;
 
                 _rightText.text = "Using controller";
