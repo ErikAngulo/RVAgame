@@ -6,7 +6,7 @@ public class gunController : MonoBehaviour
 {
     public float sensitivity = 5.0f;
     public GameObject dart;
-    public float dartSpeed = 50.0f;
+    public float dartSpeed = 40.0f;
     public AudioSource shootSound;
 
     private Vector3 _angles = Vector3.zero;
@@ -41,6 +41,7 @@ public class gunController : MonoBehaviour
         newDart.gameObject.GetComponentInChildren<dartController>().setAsTemporal();
         newDart.transform.position = transform.position;
         newDart.transform.rotation = transform.rotation;
+        Debug.Log(dartSpeed);
         newDart.GetComponent<Rigidbody>().velocity = -newDart.transform.forward * dartSpeed;
         _dartsUsed += 1;
     }

@@ -26,8 +26,9 @@ public class IOController : MonoBehaviour
         float factor = StaticClass.BallFactor;
         int game_id = 0;
         string[] path1 = {"Database", id, "game1.csv"};
+        string path = Path.Combine(Application.persistentDataPath, Path.Combine(path1));
         try{
-            string lastLine = System.IO.File.ReadLines(Path.Combine(path1)).Last();
+            string lastLine = System.IO.File.ReadLines(path).Last();
             string lastgame_id = lastLine.Split(',')[1];
             game_id = Convert.ToInt32(lastgame_id);
             game_id += 1;
@@ -69,7 +70,6 @@ public class IOController : MonoBehaviour
 
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
-        string path = Path.Combine(Application.persistentDataPath, Path.Combine(path1));
         using (StreamWriter sw = File.AppendText(Path.Combine(path)))
         {
             for(int i = 0; i < scores.Count; i++){
