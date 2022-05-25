@@ -92,6 +92,7 @@ public class IOController : MonoBehaviour
             string lastLine = System.IO.File.ReadLines(path).Last();
             string lastgame_id = lastLine.Split(',')[1];
             game_id = Convert.ToInt32(lastgame_id);
+            game_id += 1;
         }
         catch{
             // if conversion or load fails, there is no played game, we mantain game_id=0
