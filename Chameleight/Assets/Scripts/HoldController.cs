@@ -19,6 +19,8 @@ public class HoldController : MonoBehaviour
     public GameObject initialBall;
     public GameObject forward;
     public GameObject prefab;
+    public AudioSource pickBall;
+    public AudioSource throwBall;
 
     private int _limit = 0;
     private int _collisioned = 0;
@@ -53,6 +55,7 @@ public class HoldController : MonoBehaviour
 
     public void Pickup(GameObject go)
      {
+            pickBall.Play();
             _ball = go;
             
             _ball.GetComponent<CollisionController>().SetNumber(_number);
@@ -70,6 +73,7 @@ public class HoldController : MonoBehaviour
      }
 
      public void Throw(){
+         throwBall.Play();
         if((totalLimit==0 ||_limit>0) && _ball.tag != "Ball_throw"){
             if(totalLimit>0){_limit -=1;}
             GameObject newBall = Instantiate(prefab);
