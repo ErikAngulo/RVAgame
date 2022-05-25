@@ -28,6 +28,7 @@ public class ButtonHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Exiting game, play or scene. With controller X button. Only if any controller active (deactivate if playing with hand tracking)
         if ((OVRInput.GetActiveController() == OVRInput.Controller.Touch || OVRInput.GetActiveController() == OVRInput.Controller.LTouch 
         || OVRInput.GetActiveController() == OVRInput.Controller.RTouch) && OVRInput.GetDown(OVRInput.Button.Three)){ // X button
             if (SceneManager.GetActiveScene().name.Equals(_escena_principal)){
@@ -49,6 +50,7 @@ public class ButtonHandler : MonoBehaviour
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        MusicManager.instance.play();
         SceneManager.LoadScene(scene);
     }
 
@@ -57,7 +59,8 @@ public class ButtonHandler : MonoBehaviour
     }
 
     public void GoToSelectedGameScene(){
-        ChangeScene(StaticClass.SelectedGameScene);
+        MusicManager.instance.stop();
+        SceneManager.LoadScene(StaticClass.SelectedGameScene);
     }
 
     public void ExitGame(){
