@@ -47,7 +47,6 @@ public class VelocityController : MonoBehaviour
         for(int i = 0; i < speed.Count; i++){
             finalSpeed = finalSpeed+speed[i]*(i/total);
         }
-        Debug.Log("Factor:"+velFactor.ToString());
         return velFactor*finalSpeed;
     }
 }

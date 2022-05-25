@@ -23,6 +23,7 @@ public class IOController : MonoBehaviour
         List<(int,float)> throws = timeController.GetThrow();
         //Dummy IDs
         string id = StaticClass.playerId;
+        float factor = StaticClass.BallFactor;
         int game_id = 0;
         string[] path1 = {"Database", id, "game1.csv"};
         try{
@@ -72,10 +73,10 @@ public class IOController : MonoBehaviour
         using (StreamWriter sw = File.AppendText(Path.Combine(path)))
         {
             for(int i = 0; i < scores.Count; i++){
-                sw.WriteLine(id+","+game_id.ToString()+","+date+","+i.ToString()+","+time.ToString(nfi)+","+balls.ToString()+","+colors.ElementAt(i).Item2.ToString()+","
-                +scores.ElementAt(i).Item2.ToString()+","+speeds.ElementAt(i).Item2.ToString(nfi)+","+angles.ElementAt(i).Item2.x.ToString(nfi)+","
-                +angles.ElementAt(i).Item2.y.ToString(nfi)+","+angles.ElementAt(i).Item2.z.ToString(nfi)+","+reactions.ElementAt(i).Item2.ToString(nfi)+","
-                +decisions.ElementAt(i).Item2.ToString(nfi)+","+throws.ElementAt(i).Item2.ToString(nfi));
+                sw.WriteLine(id+","+game_id.ToString()+","+date+","+time.ToString(nfi)+","+balls.ToString()+","+factor.ToString(nfi)+","+i.ToString()+","
+                +colors.ElementAt(i).Item2.ToString()+","+scores.ElementAt(i).Item2.ToString()+","+speeds.ElementAt(i).Item2.ToString(nfi)+","
+                +angles.ElementAt(i).Item2.x.ToString(nfi)+","+angles.ElementAt(i).Item2.y.ToString(nfi)+","+angles.ElementAt(i).Item2.z.ToString(nfi)+","
+                +reactions.ElementAt(i).Item2.ToString(nfi)+","+decisions.ElementAt(i).Item2.ToString(nfi)+","+throws.ElementAt(i).Item2.ToString(nfi));
             }
         }
     }
@@ -163,7 +164,7 @@ public class IOController : MonoBehaviour
         path = Path.Combine(Application.persistentDataPath, Path.Combine(path1));
         using (StreamWriter sw = File.AppendText(path))
         {
-            sw.Write("id,gameId,date,instance(ball),time,nºballs,ballColor,score,speed,angleX,angleY,angleZ,reactionTime,decisionTime,throwTime");
+            sw.Write("id,gameId,date,time,nºballs,resFactor,instance(ball),ballColor,score,speed,angleX,angleY,angleZ,reactionTime,decisionTime,throwTime");
             sw.Write(System.Environment.NewLine);
         }
     }

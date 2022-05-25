@@ -43,7 +43,6 @@ public class HoldController : MonoBehaviour
 
     public void Limit(){
         _collisioned = _collisioned + 1;
-        Debug.Log(_collisioned);
         if(totalLimit > 0 && _collisioned >= totalLimit){
             timeController.ResultsTime();
             ioController.WriteStatistics1();
@@ -92,9 +91,9 @@ public class HoldController : MonoBehaviour
             _ball.GetComponent<Rigidbody>().velocity = leftHandAnchor.GetComponent<VelocityController>().GetSpeed();
         }
         _ball.tag = "Ball_throw";
-        timeController.UpdateTime();
-        throwStatisticController.AddSpeed(_ball.GetComponent<Rigidbody>().velocity.magnitude,_number);
+        throwStatisticController.AddSpeed(_ball.GetComponent<Rigidbody>().velocity.magnitude/StaticClass.BallFactor,_number);
         throwStatisticController.AddAngle(_ball.GetComponent<Rigidbody>().velocity.normalized,_number);
+        timeController.UpdateTime();
         StartCoroutine(DestroyTime(destroyTime,_ball));
      }
 
