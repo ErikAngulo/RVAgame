@@ -5482,8 +5482,6 @@ MonoBehaviour:
     m_Options:
     - m_Text: Non-Athlete
       m_Image: {fileID: 0}
-    - m_Text: US Football
-      m_Image: {fileID: 0}
     - m_Text: Baseball
       m_Image: {fileID: 0}
     - m_Text: Basketball
@@ -5509,6 +5507,8 @@ MonoBehaviour:
     - m_Text: Tennis
       m_Image: {fileID: 0}
     - m_Text: Track & field
+      m_Image: {fileID: 0}
+    - m_Text: US Football
       m_Image: {fileID: 0}
     - m_Text: Voleyball
       m_Image: {fileID: 0}
