@@ -523,7 +523,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: -35.999996}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1292459932
@@ -742,7 +742,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1441, y: 519}
+  m_SizeDelta: {x: 640, y: 480}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424885668
 MonoBehaviour:
@@ -827,7 +827,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 39fcf7c3a7d82e5d3a8b8b9bb1d07774, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2021cf7ce853ea248b6ef3e99ac9cd2e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -878,7 +878,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 14.000005}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1450588303
@@ -1201,7 +1201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -100
+      value: -86
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1317,7 +1317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 143}
+  m_AnchoredPosition: {x: 0, y: 126}
   m_SizeDelta: {x: 350, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2126473928
@@ -1333,7 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1439,7 +1439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2678875202762757952, guid: b2e6023bf1431bb9781582f7edd120a1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -150
+      value: -136
       objectReference: {fileID: 0}
     - target: {fileID: 2678875202762757952, guid: b2e6023bf1431bb9781582f7edd120a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

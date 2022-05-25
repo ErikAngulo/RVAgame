@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464156, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -182
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464156, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -429,7 +429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 17.999994}
   m_SizeDelta: {x: 500, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244999700
@@ -617,7 +617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -200
+      value: -182
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -753,6 +753,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeController: {fileID: 0}
   holdController: {fileID: 0}
+  velocityLeft: {fileID: 0}
+  velocityRight: {fileID: 0}
   buttonController: {fileID: 0}
   gamecontroller: {fileID: 0}
 --- !u!4 &1122645308
@@ -901,7 +903,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 250}
+  m_SizeDelta: {x: 400, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1424885666
 GameObject:
@@ -945,7 +947,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 520}
+  m_SizeDelta: {x: 1000, y: 659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424885668
 MonoBehaviour:
@@ -1030,7 +1032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 39fcf7c3a7d82e5d3a8b8b9bb1d07774, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2021cf7ce853ea248b6ef3e99ac9cd2e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1225,7 +1227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897607310870066, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.17999995
       objectReference: {fileID: 0}
     - target: {fileID: 4897607310870066, guid: a9d2de84afb308a4796cc671d3432b4d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1308,7 +1310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 175}
+  m_AnchoredPosition: {x: 0, y: 193}
   m_SizeDelta: {x: 350, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2126473928
@@ -1324,7 +1326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1344,7 +1346,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Scores:'
+  m_Text: Scores
 --- !u!222 &2126473929
 CanvasRenderer:
   m_ObjectHideFlags: 0

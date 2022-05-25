@@ -196,11 +196,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464156, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 111
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464156, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: -277
       objectReference: {fileID: 0}
     - target: {fileID: 483139705276464156, guid: 5b846ef783b56cb49990ce54af024d67, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -768,11 +768,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -122
+      value: -114
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: -277
       objectReference: {fileID: 0}
     - target: {fileID: 9037321755533932757, guid: 04950727113f77bad907f557d1fb37f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -893,7 +893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 180}
+  m_AnchoredPosition: {x: -300, y: 159}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017019659
@@ -925,8 +925,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1024,6 +1024,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeController: {fileID: 0}
   holdController: {fileID: 0}
+  velocityLeft: {fileID: 0}
+  velocityRight: {fileID: 0}
   buttonController: {fileID: 0}
   gamecontroller: {fileID: 0}
 --- !u!4 &1122645308
@@ -1220,7 +1222,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 900, y: 700}
+  m_SizeDelta: {x: 1200, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424885668
 MonoBehaviour:
@@ -1305,7 +1307,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 39fcf7c3a7d82e5d3a8b8b9bb1d07774, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2021cf7ce853ea248b6ef3e99ac9cd2e, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -1415,7 +1417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 295, y: 180}
+  m_AnchoredPosition: {x: 295, y: 158}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1524354132
@@ -1447,8 +1449,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1896,7 +1898,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 252}
   m_SizeDelta: {x: 500, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2126473928
@@ -1912,7 +1914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1932,7 +1934,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Game instructions:'
+  m_Text: Game instructions
 --- !u!222 &2126473929
 CanvasRenderer:
   m_ObjectHideFlags: 0
