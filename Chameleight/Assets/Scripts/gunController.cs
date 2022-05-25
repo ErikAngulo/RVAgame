@@ -6,7 +6,7 @@ public class gunController : MonoBehaviour
 {
     public float sensitivity = 5.0f;
     public GameObject dart;
-    public float dartSpeed = 20.0f;
+    public float dartSpeed = 50.0f;
     public AudioSource shootSound;
 
     private Vector3 _angles = Vector3.zero;
