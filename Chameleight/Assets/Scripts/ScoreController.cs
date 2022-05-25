@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Linq;
 
 public class ScoreController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ScoreController : MonoBehaviour
     public TextMeshProUGUI incorrectText;
     public TextMeshProUGUI missedText;
     public TextMeshProUGUI outText;
+    public List<AudioSource> booAudio = new List<AudioSource>();
+    public List<AudioSource> clapAudio = new List<AudioSource>();
 
     private int _correct = 0;
     private int _incorrect = 0;
@@ -20,6 +23,8 @@ public class ScoreController : MonoBehaviour
     private List<(int,string)> _colorList = new List<(int,string)>();
 
     public void Correct(int ball, string material){
+        int s = Random.Range(0, clapAudio.Count);
+        clapAudio.ElementAt(s).Play();
         _correct += 1;
         _resultList.Add((ball,"CORRECT"));
         _colorList.Add((ball,material));
@@ -31,6 +36,8 @@ public class ScoreController : MonoBehaviour
     }
 
     public void Incorrect(int ball, string material){
+        int s = Random.Range(0, booAudio.Count);
+        booAudio.ElementAt(s).Play();
         _incorrect += 1;
         _resultList.Add((ball,"INCORRECT"));
         _colorList.Add((ball,material));
@@ -42,6 +49,8 @@ public class ScoreController : MonoBehaviour
     }
 
     public void Missed(int ball, string material){
+        int s = Random.Range(0, booAudio.Count);
+        booAudio.ElementAt(s).Play();
         _missed += 1;
         _resultList.Add((ball,"MISSED"));
         _colorList.Add((ball,material));
@@ -53,6 +62,8 @@ public class ScoreController : MonoBehaviour
     }
 
     public void Out(int ball, string material){
+        int s = Random.Range(0, booAudio.Count);
+        booAudio.ElementAt(s).Play();
         _out += 1;
         _resultList.Add((ball,"OUT"));
         _colorList.Add((ball,material));

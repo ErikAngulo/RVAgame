@@ -21,8 +21,8 @@ public class ReadConfig : MonoBehaviour
     private TextMeshProUGUI _rightText;
     private VideoPlayer _leftVideo;
     private VideoPlayer _rightVideo;
-    private string _ball_game = "MainScene";
-    private string _shooting_game = "Chameleight_Scenary";
+    private string _ball_game = "BallScene";
+    private string _shooting_game = "ShootingScene";
     private string _score_scene = "GameOverScene";
     private string _instruction_scene = "InstructionsScene";
     private string _controller_scene = "ControllerInstructScene";

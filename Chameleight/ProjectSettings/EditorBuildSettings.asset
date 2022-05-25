@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/WelcomeScene.unity
     guid: efefbcd6db3963580b93849b9dfded5d
   - enabled: 1
-    path: Assets/Scenes/Chameleight_Scenary.unity
+    path: Assets/Scenes/ShootingScene.unity
     guid: de92fa250997fac48a939583119cdaac
   - enabled: 1
     path: Assets/Scenes/MainMenuScene.unity
     guid: b7798f28fb12ed74fa493aa1ae9639bc
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/BallScene.unity
     guid: b6f97118f55965244b12eedb182de584
   - enabled: 1
     path: Assets/Scenes/GameSelectionScene.unity

@@ -10,8 +10,8 @@ public class ConfigFormHandler : MonoBehaviour
     public GameObject myCanvasHolder;
 
     private Canvas _myCanvas;
-    private string _ball_game = "MainScene";
-    private string _shooting_game = "Chameleight_Scenary";
+    private string _ball_game = "BallScene";
+    private string _shooting_game = "ShootingScene";
 
     // Start is called before the first frame update
     void Start()

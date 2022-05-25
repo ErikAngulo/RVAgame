@@ -9,6 +9,7 @@ public class CollisionController : MonoBehaviour
     public ButtonController buttonController;
     public HoldController holdController;
     public ScoreController scoreController;
+    public AudioSource hitBall;
     private bool _collisionable = true;
     private int _ballNumber = 0;
     private float _timeThrow = 0.0f;
@@ -16,6 +17,7 @@ public class CollisionController : MonoBehaviour
     // Start is called before the first frame update
     void OnCollisionEnter(Collision theCollision)
     {
+        hitBall.Play();
         if(_collisionable){
             if(theCollision.gameObject.tag == "Button") // If A collides with B
             {

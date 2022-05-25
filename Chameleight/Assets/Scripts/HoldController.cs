@@ -80,7 +80,9 @@ public class HoldController : MonoBehaviour
             newBall.GetComponent<CollisionController>().scoreController = _ball.GetComponent<CollisionController>().scoreController;
             newBall.GetComponent<CollisionController>().buttonController = _ball.GetComponent<CollisionController>().buttonController;
             newBall.GetComponent<CollisionController>().holdController = _ball.GetComponent<CollisionController>().holdController;
+            newBall.GetComponent<CollisionController>().hitBall = _ball.GetComponent<CollisionController>().hitBall;
             newBall.GetComponent<CustomTransformer>().holdController = _ball.GetComponent<CustomTransformer>().holdController;
+
             newBall.transform.position = _position;
             newBall.transform.rotation = _rotation;
             newBall.transform.localScale = _localScale;
