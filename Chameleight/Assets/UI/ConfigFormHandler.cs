@@ -38,13 +38,13 @@ public class ConfigFormHandler : MonoBehaviour
             }
             dropdown1.value = 0;
 
-            text2.text = "Ball resistance";
+            text2.text = "Ball weight";
             List<string> list2 = new List<string> { "Low", "Medium", "High" };
             foreach (string option in list2)
             {
                 dropdown2.options.Add(new Dropdown.OptionData(option));
             }
-            dropdown2.value = 0;
+            dropdown2.value = 1;
 
             text3.gameObject.SetActive(false);
             dropdown3.gameObject.SetActive(false);

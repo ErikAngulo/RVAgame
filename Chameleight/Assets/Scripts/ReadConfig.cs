@@ -90,13 +90,17 @@ public class ReadConfig : MonoBehaviour
 
             if (StaticClass.SelectedGameScene.Equals(_ball_game)){
                 _text.text = "" +
-                "There are two options to perform the test: Throw with a controller or you hand."
+                "There are two options to perform the test: Throw with a controller or with you hand."
                 + System.Environment.NewLine +
-                "Playing with the controller requires to pick the ball with the hand trigger."
+                "Playing with the controller requires to pick the ball with the grip button."
+                + System.Environment.NewLine +
+                "The grip button is the one on the side of the controller."
                 + System.Environment.NewLine +
                 "Playing with your hand requires leaving the controller on a table at the start of the game."
                 + System.Environment.NewLine +
-                "Check the video on the side for an execution example."
+                "Then, pick the ball by pinching the thumb and index fingers."
+                + System.Environment.NewLine +
+                "Check the videos on the sides for execution examples."
                 + System.Environment.NewLine +
                 "You can exit the game any time pressing X button (left controller)."
                 + System.Environment.NewLine;

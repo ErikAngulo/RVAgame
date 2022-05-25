@@ -65,7 +65,7 @@ public class QuestionaryValidation : MonoBehaviour
         string y = year.text;
         int current = int.Parse(DateTime.Now.ToString("yyyy"));
         if(int.Parse(y)<current-100 || int.Parse(y)>=current){
-            warning.text = "Please, enter a valid birthday between the years " + (current-100).ToString() + " and " + (current-1).ToString() + ".";
+            warning.text = "Please, enter a valid birthday (" + (current-100).ToString() + "-" + (current-1).ToString() + ").";
             return;
         }
         while(y.Length<4){
