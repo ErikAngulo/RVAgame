@@ -8,25 +8,28 @@ public class ButtonController : MonoBehaviour
     public ScoreController scoreController;
     private bool _pushable = true;
 
+    //Push the button using a ball.
     public void Pushed(GameObject go, GameObject ball, int ballNumber)
     {
-
+        //Check if the button is pushable.
         if(_pushable){
+            //Check if the object pushing the button is a ball.
             if(ball != null){
+                //If the object pushing the button is a ball, check if the their colors match.
                 if(ball.GetComponent<Renderer>().material.color==go.GetComponent<Renderer>().material.color){
-                    Debug.Log("Correct!");
+                    //Colors match, correct.
                     scoreController.Correct(ballNumber,ball.GetComponent<Renderer>().material.name);
                 }else{
-                    Debug.Log("Incorrect!");
+                    //Colors don't match, incorrect.
                     scoreController.Incorrect(ballNumber,ball.GetComponent<Renderer>().material.name);
                 }
-            }else{
-                Debug.Log("Use the balls!");
             }
+            //Button pushing animation.
             StartCoroutine(Push(time,go));
         }
     }
 
+    //Button pushing animation.
     IEnumerator Push(float time, GameObject go)
     {
         _pushable = false;
@@ -34,6 +37,7 @@ public class ButtonController : MonoBehaviour
         Vector3 finalPos = go.transform.position + (transform.forward * 0.05f);
         float elapsedTime = 0;
 
+        //The button moves backwards.
         while (elapsedTime < time)
         {
             go.transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
@@ -43,6 +47,7 @@ public class ButtonController : MonoBehaviour
 
         elapsedTime = 0;
 
+        //The button returns to its original location.
         while (elapsedTime < time)
         {
             go.transform.position = Vector3.Lerp(finalPos, startingPos, (elapsedTime / time));

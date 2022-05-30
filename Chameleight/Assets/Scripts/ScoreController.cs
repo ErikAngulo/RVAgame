@@ -22,62 +22,60 @@ public class ScoreController : MonoBehaviour
 
     private List<(int,string)> _colorList = new List<(int,string)>();
 
+    //Correct throw.
     public void Correct(int ball, string material){
+        //Random correct sound.
         int s = Random.Range(0, clapAudio.Count);
         clapAudio.ElementAt(s).Play();
         _correct += 1;
+        //Add result.
         _resultList.Add((ball,"CORRECT"));
         _colorList.Add((ball,material));
         correctText.text = "Correct: " + _correct;
-        foreach (var item in _resultList)
-        {
-            Debug.Log(item.ToString());
-        }
     }
 
+    //Incorrect throw.
     public void Incorrect(int ball, string material){
+        //Random incorrect sound.
         int s = Random.Range(0, booAudio.Count);
         booAudio.ElementAt(s).Play();
         _incorrect += 1;
+        //Add result.
         _resultList.Add((ball,"INCORRECT"));
         _colorList.Add((ball,material));
         incorrectText.text = "Incorrect: " + _incorrect;
-        foreach (var item in _resultList)
-        {
-            Debug.Log(item.ToString());
-        }
     }
 
+    //Missed throw.
     public void Missed(int ball, string material){
+        //Random incorrect sound.
         int s = Random.Range(0, booAudio.Count);
         booAudio.ElementAt(s).Play();
         _missed += 1;
+        //Add result.
         _resultList.Add((ball,"MISSED"));
         _colorList.Add((ball,material));
         missedText.text = "Missed: " + _missed;
-        foreach (var item in _resultList)
-        {
-            Debug.Log(item.ToString());
-        }
     }
 
+    //Out throw.
     public void Out(int ball, string material){
+        //Random incorrect sound.
         int s = Random.Range(0, booAudio.Count);
         booAudio.ElementAt(s).Play();
         _out += 1;
+        //Add result.
         _resultList.Add((ball,"OUT"));
         _colorList.Add((ball,material));
         outText.text = "Out: " + _out;
-        foreach (var item in _resultList)
-        {
-            Debug.Log(item.ToString());
-        }
     }
 
+    //Get scores.
     public List<(int,string)> GetScores(){
         return _resultList;
     }
 
+    //Get ball colors.
     public List<(int,string)> GetColors(){
         return _colorList;
     }

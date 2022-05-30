@@ -7,12 +7,14 @@ public class MaterialController : MonoBehaviour
 {
     public  List<Material> mats = new List<Material>();
     private System.Random random = new System.Random();
-    // Start is called before the first frame update
+
+    //Set random material.
     void Start()
     {
+        //Select a random material from the list of materials.
         int val = random.Next(0,mats.Count);
-        Debug.Log(val);
         Renderer rend = GetComponent<Renderer>();
+        //Set the random material to the object.
         rend.material = mats.ElementAt(val);
     }
 }

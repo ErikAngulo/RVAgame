@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Oculus.Interaction
 {
+
+//Custom Transformer that is used to pick and throw the ball.
 public class CustomTransformer : MonoBehaviour, ITransformer
 {
     public HoldController holdController;
@@ -18,6 +20,7 @@ public class CustomTransformer : MonoBehaviour, ITransformer
     {
         Pose grabPoint = _grabbable.GrabPoints[0];
         _previousGrabPose = grabPoint;
+        //Pick up the ball when the grab begins.
         holdController.Pickup(_grabbable.Transform.gameObject);
     }
 
@@ -37,6 +40,7 @@ public class CustomTransformer : MonoBehaviour, ITransformer
     }
 
     public void EndTransform() {
+        //Throw the ball when the grab ends.
         holdController.Throw();
     }
 }

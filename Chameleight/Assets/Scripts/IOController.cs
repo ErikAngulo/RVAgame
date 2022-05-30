@@ -13,7 +13,9 @@ public class IOController : MonoBehaviour
     public ScoreController scoreController;
     public ThrowStatisticController throwStatisticController;
 
+    //Write the statistics of the first game in a csv file.
     public void WriteStatistics1(){
+        //Get statistics.
         List<(int,string)> scores = scoreController.GetScores();
         List<(int,string)> colors = scoreController.GetColors();
         List<(int,float)> speeds = throwStatisticController.GetSpeeds();
@@ -21,8 +23,9 @@ public class IOController : MonoBehaviour
         List<(int,float)> reactions = timeController.GetReaction();
         List<(int,float)> decisions = timeController.GetDecision();
         List<(int,float)> throws = timeController.GetThrow();
-        //Dummy IDs
+        //Player identifier.
         string id = StaticClass.playerId;
+        //Ball speed multiplier.
         float factor = StaticClass.BallFactor;
         int game_id = 0;
         string[] path1 = {"Database", id, "game1.csv"};
@@ -30,15 +33,20 @@ public class IOController : MonoBehaviour
         try{
             string lastLine = System.IO.File.ReadLines(path).Last();
             string lastgame_id = lastLine.Split(',')[1];
+            //Game identifier
             game_id = Convert.ToInt32(lastgame_id);
             game_id += 1;
         }
         catch{
-            // if conversion or load fails, there is no played game, we mantain game_id=0
+            //If conversion or load fails, there is no played game, we mantain game_id=0.
         }
+        //Number of balls.
         int balls = scores.Count;
+        //Total playing time.
         float time = timeController.GetTotal();
-        string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"); 
+        //Current date.
+        string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
+        //Sort all the statistics according to the ball number.
         scores.Sort(delegate ((int, string) emp1, (int, string) emp2) 
         {
             return emp1.Item1.CompareTo(emp2.Item1);
@@ -68,6 +76,7 @@ public class IOController : MonoBehaviour
             return emp1.Item1.CompareTo(emp2.Item1);
         });
 
+        //Store the statistics in a csv file.
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
         using (StreamWriter sw = File.AppendText(Path.Combine(path)))
@@ -131,6 +140,7 @@ public class IOController : MonoBehaviour
         }
     }
 
+    //Store the information of a new user in a csv file.
     public void RegisterUser(){
         string[] path = {"Database", PlayerInfo.email};
         string[] infopath = {"Database", PlayerInfo.email, "user_info.csv"};

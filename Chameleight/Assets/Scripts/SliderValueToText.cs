@@ -8,14 +8,15 @@ public Slider sliderUI;
 public string text = "";
 private TextMeshProUGUI textSliderValue;
 
+  //Initialize slider text.
   void Start (){
     textSliderValue = GetComponent<TextMeshProUGUI>();
     ShowSliderValue();
   }
 
+  //Get slider value and update slider text.
   public void ShowSliderValue () {
     string sliderMessage = sliderUI.value.ToString() + " " + text;
-    Debug.Log(sliderMessage);
     textSliderValue.text = sliderMessage;
   }
 }

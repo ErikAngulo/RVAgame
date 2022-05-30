@@ -24,40 +24,47 @@ public class TimeController : MonoBehaviour
 
     private string _scoreScene = "GameOverScene";
 
+    //Initialize timers.
     public void Start(){
         generalTimeText.text = "Time: " + totalTime.ToString("0.0") + "s";
         _generalTime = Time.time;
         _timeReaction = _generalTime;
         _timeable = true;
+        //Initial phase is the reaction phase.
         _timeableReaction = true;
     }
 
+    //Update the general timer.
     public void Update(){
         float act_time;
-        if(_timeableReaction){
-            act_time = Time.time-_timeReaction;
-        }
-        if(_timeableDecision){
-            act_time = Time.time-_timeDecision;
-        }
+        //Check if the game has not ended (there is still time left).
         if(_timeable){
             if(totalTime>0.0f){
                 act_time = totalTime-(Time.time-_generalTime);
             }else{
                 act_time = Time.time-_generalTime;
             }
+            //Update general time text.
             generalTimeText.text = "Time: " + act_time.ToString("0.0") + "s";
+            //Check if the remaining time is 0.
             if(totalTime>0.0f && act_time<=0.0f){
+                //Store time information.
                 ResultsTime();
+                //Write the statistics of the game.
+                ioController.WriteStatistics1();
+                //End game, change scene.
                 GameObject.Find("UIButtonControl").GetComponent<ButtonHandler>().ChangeScene(_scoreScene);
             }
         }
     }
 
+    //Store time information and disable the timers.
     public void ResultsTime(){
+        //Disable the timers.
         _timeable = false;
         _timeableReaction = false;
         _timeableDecision = false;
+        //Compute statistics.
         float totalReaction = 0.0f;
         foreach(var d in _timesReactionList)
         {    
@@ -86,6 +93,7 @@ public class TimeController : MonoBehaviour
         }
         string throwText = "Mean Throw time: " + totalThrow.ToString("0.0") + "s";
 
+        //Store the statistics in a static class.
         StaticClass.scoreText = reactionText +
                               System.Environment.NewLine + 
                               decisionText +
@@ -101,15 +109,22 @@ public class TimeController : MonoBehaviour
                               scoreController.outText.text;
     }
 
+    //Update the decision and reaction timers.
     public void UpdateTime(){
+        //Check if the current phase is reaction phase.
         if(_timeableReaction){
+            //Add reaction time.
             _timesReactionList.Add((phase,Time.time-_timeReaction));
+            //Change to decision phase.
             _timeableReaction = false;
             _timeReaction = 0.0f;
             _timeableDecision = true;
             _timeDecision = Time.time;
+        //Check if the current phase is decision phase.
         }else if(_timeableDecision){
+            //Add decision time.
             _timesDecisionList.Add((phase,Time.time-_timeDecision));
+            //Change to reaction phase.
             _timeableDecision = false;
             _timeDecision = 0.0f;
             _timeableReaction = true;
@@ -118,22 +133,27 @@ public class TimeController : MonoBehaviour
         }
     }
 
+    //Add throw time.
     public void AddThrowTime(float _timeThrow, int ballNumber){
         _timesThrowList.Add((ballNumber,Time.time-_timeThrow));
     }
 
+    //Get reaction time list.
     public List<(int,float)> GetReaction(){
         return _timesReactionList;
     }
 
+    //Get decision time list.
     public List<(int,float)> GetDecision(){
         return _timesDecisionList;
     }
 
+    //Get throw time list.
     public List<(int,float)> GetThrow(){
         return _timesThrowList;
     }
 
+    //Get total time.
     public float GetTotal(){
         if(totalTime>0.0f){
             return totalTime;
