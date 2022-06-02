@@ -5,6 +5,12 @@ using UnityEngine;
 public class LightSwitch : MonoBehaviour
 {
     
+    // Script to handle collision at shooting game
+
+    // This script is attached to each dartboard target (which has its dartboardController)
+    // The light associated to the target is also stored
+    // If target collisioned and its light is ON, calculate points and continue game
+
     public Light lightBO;
     public gameController gameController;
     public dartboardController dartboardController;
@@ -22,7 +28,7 @@ public class LightSwitch : MonoBehaviour
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         string _dart = "Dart";
         float _points = 0.0f;
-         
+        // If the target detected collision with a dart, only if associated light is ON
         if (collision.gameObject.tag.Equals(_dart) && lightBO.enabled) 
         {
             //If the GameObject has the same tag as specified:
@@ -58,9 +64,14 @@ public class LightSwitch : MonoBehaviour
                 // _maxPoints variable will be if hit in center, else progresively decline until diameter (0 points)
                 // in diameter: maxPoints - declineStep * diameter = 0 --> declineStep = maxPoints / diameter
                 float declineStep = _maxPoints / diameter;
+                // calculate points
                 _points = _maxPoints - declineStep * distance;
+                // Show hole at hit position and play sound
                 drawBulletHoleAndSound(pos, _points);
+                // Tell shooting game controller a correct collision happened to continue game
+                // (turn off light, save points, turn on again a light...)
                 gameController.TargetHit(lightBO, _points, transformed);
+                // Dartboard will change its position
                 dartboardController.changePosition();
             }
             // do nothing if collision but not inside dartboard (distance < diameter)
@@ -69,6 +80,7 @@ public class LightSwitch : MonoBehaviour
         
     }    
 
+    // Draw a bullet hole at collisioned point and play sound according to scored points
     void drawBulletHoleAndSound(Vector3 pos, float points){
         // sound effect
         float lowPercentage = 0.25f;

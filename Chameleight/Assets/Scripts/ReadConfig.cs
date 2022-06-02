@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class ReadConfig : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Load saved data at the scenes (game configurations and instruction texts)
 
     public TimeController timeController;
     public HoldController holdController;
@@ -27,21 +27,28 @@ public class ReadConfig : MonoBehaviour
     private string _instruction_scene = "InstructionsScene";
     private string _controller_scene = "ControllerInstructScene";
 
+    // Start is called before the first frame update
     void Start()
     {
+        // Check the scene and load necessary data
+
+        // Configuration for ball game
         if (SceneManager.GetActiveScene().name.Equals(_ball_game)){
             holdController.totalLimit = StaticClass.BallLimit;
             velocityLeft.velFactor = StaticClass.BallFactor;
             velocityRight.velFactor = StaticClass.BallFactor;
         }
+        // Configuration for shooting game
         else if (SceneManager.GetActiveScene().name.Equals(_shooting_game)){
             gamecontroller.movement = StaticClass.TargetMovement;
             gamecontroller.playTime = StaticClass.Time;
         }
+        // Scores to show when game finishes
         else if (SceneManager.GetActiveScene().name.Equals(_score_scene)){
             _text = GameObject.Find("ResultsText").GetComponent<TextMeshProUGUI>();
             _text.text = StaticClass.scoreText;
         }
+        // Instruction text according to selected game
         else if (SceneManager.GetActiveScene().name.Equals(_instruction_scene)){
             _text = GameObject.Find("InstructionText").GetComponent<TextMeshProUGUI>();
             if (StaticClass.SelectedGameScene.Equals(_ball_game)){
@@ -81,6 +88,7 @@ public class ReadConfig : MonoBehaviour
                 + System.Environment.NewLine;
             }
         }
+        // Video examples according to selected games
         else if (SceneManager.GetActiveScene().name.Equals(_controller_scene)){
             _text = GameObject.Find("InstructionText").GetComponent<TextMeshProUGUI>();
             _leftText = GameObject.Find("LeftText").GetComponent<TextMeshProUGUI>();

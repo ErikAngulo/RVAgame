@@ -90,14 +90,16 @@ public class IOController : MonoBehaviour
         }
     }
 
+    // Write shooting game statistics to user's csv
     public void WriteStatistics2(
         bool movement, float totalTime, List<string> _nLight, List<float> _nTimeToHit, List<float> _nCoordX, List<float> _nCoordY, List<float> _nPoints, List<int> _nBulletsToHit
         ){
-        string id = StaticClass.playerId;
-        int game_id = 0;
+        string id = StaticClass.playerId; // user ID
+        int game_id = 0; // game ID (differentiate each play session)
         string[] path2 = {"Database", id, "game2.csv"};
         string path = Path.Combine(Application.persistentDataPath, Path.Combine(path2));
         try{
+            // Update game_id + 1 from last session if player has already played
             string lastLine = System.IO.File.ReadLines(path).Last();
             string lastgame_id = lastLine.Split(',')[1];
             game_id = Convert.ToInt32(lastgame_id);
@@ -109,6 +111,7 @@ public class IOController : MonoBehaviour
         string date = System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
         NumberFormatInfo nfi = new NumberFormatInfo();
         nfi.NumberDecimalSeparator = ".";
+        // Write parameters following csv column order (see CreateGameSaveData)
         using (StreamWriter writer = File.AppendText(Path.Combine(path)))
         {
             for(int i = 0; i < _nLight.Count; i++){
@@ -153,6 +156,7 @@ public class IOController : MonoBehaviour
         }
     }
 
+    // Create demo user folder (the first time the game is initialized)
     public void createDemoFolder(){
         string id = PlayerInfo.email;
         string[] path = {"Database", id};
@@ -161,6 +165,8 @@ public class IOController : MonoBehaviour
             CreateGameSaveData();
         }
     }
+
+    // Creates csv game files and column names for recently registered user
     public void CreateGameSaveData(){
         string id = PlayerInfo.email;
         string[] path1 = {"Database", id, "game1.csv"};

@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class MusicManager: MonoBehaviour
 {
+    // Singleton class to load a single instance of MusicManager class object
+    // The instance is static to access at any point of game
+
+    // This is used to control the background music across menu scenes
+    // This way the song does not restart while navigating menu scenes
+
     private static MusicManager _instance;
  
+    //This way the instance is obtained
     public static MusicManager instance
     {
         get
@@ -14,8 +21,11 @@ public class MusicManager: MonoBehaviour
         }
     }
  
+    // This method is executed as soon as the attached GameObject loads
+    // The game object is located at startup screen so the instance is loaded at game launch
     void Awake() 
     {
+        // When first screen loads create the instance
         if(_instance == null)
         {
             //If I am the first instance, make me the Singleton
@@ -42,11 +52,13 @@ public class MusicManager: MonoBehaviour
         }
     }
 
+    // Play the menu background music if it is not already playing
     public void play(){
         if (_instance.gameObject.GetComponent<AudioSource>().isPlaying) return;
          _instance.gameObject.GetComponent<AudioSource>().Play();
     }
 
+    // Stop the menu background music
     public void stop(){
         _instance.gameObject.GetComponent<AudioSource>().Stop();
     }
