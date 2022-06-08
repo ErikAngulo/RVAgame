@@ -1,0 +1,11 @@
+id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,0,Orange,8.84869,0.148634,0.9684477,4.053787,4
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,1,Blue,10.23487,-0.1947167,0.4781685,6.866671,15
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,2,Orange,2.147646,0.5495756,0.9499903,3.339378,5
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,3,Orange,1.213843,0.1568334,-0.08367728,8.921196,5
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,4,Blue,1.569674,-0.5300269,0.2475462,6.449794,1
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,5,Blue,1.514202,-0.03698111,1.032002,3.732882,4
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,6,Orange,1.279518,-0.5732334,0.4534955,5.564088,3
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,7,Orange,1.424925,-0.3030281,-0.2697148,7.538007,1
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,8,Orange,1.335095,-0.1484158,0.3588028,7.643533,1
+josune@pakos.com,0,2022-05-31_18-12-00,True,60,9,Blue,1.636578,0.3101702,0.9107442,4.161053,1

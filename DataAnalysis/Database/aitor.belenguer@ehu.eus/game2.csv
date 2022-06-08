@@ -1,0 +1,12 @@
+id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,0,Orange,5.338921,-0.2463269,0.826231,4.767601,2
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,1,Blue,2.081917,-0.1150677,1.017221,3.787231,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,2,Blue,1.982206,0.1462576,0.5226212,6.706413,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,3,Orange,2.828252,-0.5029448,0.4864054,5.753761,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,4,Orange,1.625205,0.3223186,0.4108386,6.830918,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,5,Orange,2.160118,-0.2573929,-0.1003499,8.323393,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,6,Orange,2.639349,0.1307602,-0.1512861,8.78644,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,7,Orange,3.875497,0.1421044,-0.2096977,8.462682,1
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,8,Blue,3.697166,0.3175274,-0.440546,6.704287,2
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,9,Orange,2.805754,0.1480212,0.1034956,8.903872,2
+aitor.belenguer@ehu.eus,0,2022-05-31_16-23-29,True,60,10,Orange,2.226378,0.2651942,0.09292985,8.294613,1

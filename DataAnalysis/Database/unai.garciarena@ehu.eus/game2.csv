@@ -1,0 +1,13 @@
+id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,0,Orange,8.056518,-0.25265,1.533924,0.5653667,2
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,1,Blue,1.782181,-0.3493147,0.3593049,6.958765,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,2,Orange,2.714833,-0.01714516,0.5122385,6.889544,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,3,Orange,1.795536,-0.2217014,0.4715533,6.837687,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,4,Blue,1.419979,-0.1217664,0.5666018,6.482851,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,5,Orange,2.338606,0.6368868,-0.7369633,4.08871,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,6,Blue,1.210684,0.01516628,0.2389178,8.547117,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,7,Orange,1.531593,-0.2328954,0.9462309,4.086052,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,8,Blue,1.475099,0.1185868,-0.2336674,8.40973,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,9,Orange,1.265932,-0.1899991,0.689373,5.660283,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,10,Blue,2.018753,-0.2385173,0.1160221,8.390297,1
+unai.garciarena@ehu.eus,0,2022-05-31_15-55-17,True,60,11,Orange,1.35012,-0.1432993,-0.0711336,9.029079,1

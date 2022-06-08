@@ -1,0 +1,14 @@
+id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,0,Blue,4.034848,-0.11854,-0.1129718,9.006215,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,1,Blue,0.1999653,0.7863915,-0.002055152,5.227467,3
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,2,Orange,3.171885,1.288722,0.6241035,1.310027,5
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,3,Blue,2.115629,-0.564198,0.191762,6.383577,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,4,Blue,0.7566873,0.4281573,-0.1798944,7.181524,2
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,5,Orange,1.191161,0.5927811,1.144037,2.180299,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,6,Orange,1.281525,0.6221664,0.6421385,4.573751,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,7,Orange,1.159247,0.9224529,0.002555385,4.401721,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,8,Orange,1.393323,1.027228,-0.5619097,2.894121,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,9,Orange,1.393458,0.7660437,-0.6442552,3.925393,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,10,Blue,1.078557,0.7812386,-0.6272545,3.919652,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,11,Blue,1.079974,0.4278011,0.7073598,4.98308,1
+irureta.gorka@gmail.com,0,2022-05-31_16-37-00,True,60,12,Blue,1.435759,0.8666096,-0.3736458,4.272624,1

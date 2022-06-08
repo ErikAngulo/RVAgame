@@ -1,0 +1,8 @@
+id,gameId,date,movement,playTime,instance(hitCorrect),LightEnabled,TimeNeededToHit,HitCoordX,HitCoordY,Points,BulletsNeeded
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,0,Orange,7.772533,-0.1293242,1.599864,0.2589444,1
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,1,Blue,10.74693,-0.218863,-1.195056,2.626721,2
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,2,Blue,2.650963,0.154669,-1.135421,3.045623,1
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,3,Blue,2.204417,0.5520256,-1.081735,2.629661,1
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,4,Orange,7.128009,-0.08227015,-1.159131,2.947675,3
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,5,Orange,5.044884,-0.3788106,0.210845,7.368924,2
+kristinadiez@gmail.comm,0,2022-05-31_17-13-54,True,60,6,Orange,5.40167,-0.9156505,1.117068,1.234178,2
